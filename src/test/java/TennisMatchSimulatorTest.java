@@ -8,7 +8,7 @@ public class TennisMatchSimulatorTest {
     @Test
     public void AfterNewGameScoreZero(){
         tennisGame = new TennisGame(new TennisGameTest.FakePlayGame());
-        while (!tennisGame.IsMatchOver(3)) {
+        while (!tennisGame.IsMatchOver(TypeOfTennisMatch.BestOfThree)) {
             tennisGame.addGame(tennisGame.getGame());
             tennisGame.getCurrentScore();
         }

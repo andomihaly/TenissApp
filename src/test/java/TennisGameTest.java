@@ -95,9 +95,9 @@ public class TennisGameTest {
 
     @Test
     public void GameIsNotOverYet(){
-        Assert.assertEquals(false, tennisGame.IsMatchOver(3));
+        Assert.assertEquals(false, tennisGame.IsMatchOver(TypeOfTennisMatch.BestOfThree));
         addWinningGameForBPlayer(4);
-        Assert.assertEquals(false, tennisGame.IsMatchOver(3));
+        Assert.assertEquals(false, tennisGame.IsMatchOver(TypeOfTennisMatch.BestOfThree));
     }
 
     @Test
@@ -106,7 +106,7 @@ public class TennisGameTest {
         tennisGame.getCurrentScore();
         addWinningGameForAPlayer(4);
         tennisGame.getCurrentScore();
-        Assert.assertEquals(true, tennisGame.IsMatchOver(3));
+        Assert.assertEquals(true, tennisGame.IsMatchOver(TypeOfTennisMatch.BestOfThree));
     }
 
     @Test
@@ -115,7 +115,7 @@ public class TennisGameTest {
         tennisGame.getCurrentScore();
         addWinningGameForAPlayer(4);
         tennisGame.getCurrentScore();
-        Assert.assertEquals(false, tennisGame.IsMatchOver(5));
+        Assert.assertEquals(false, tennisGame.IsMatchOver(TypeOfTennisMatch.BestOfFive));
     }
     @Test
     public void BestOfFiveGameIsOver(){
@@ -125,7 +125,7 @@ public class TennisGameTest {
         tennisGame.getCurrentScore();
         addWinningGameForAPlayer(4);
         tennisGame.getCurrentScore();
-        Assert.assertEquals(true, tennisGame.IsMatchOver(5));
+        Assert.assertEquals(true, tennisGame.IsMatchOver(TypeOfTennisMatch.BestOfFive));
     }
     @Test
     public void GetWinnerName(){

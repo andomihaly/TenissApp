@@ -64,8 +64,8 @@ class TennisGame {
         player.game = 0;
     }
 
-    public boolean IsMatchOver(int minimumWinningSet) {
-        if (ptgs.playerAScore.set > minimumWinningSet/2 || ptgs.playerBScore.set > minimumWinningSet/2)
+    public boolean IsMatchOver(TypeOfTennisMatch matchType) {
+        if (ptgs.playerAScore.set > matchType.maximumSetInGame/2 || ptgs.playerBScore.set > matchType.maximumSetInGame/2)
             return true;
         return false;
     }
