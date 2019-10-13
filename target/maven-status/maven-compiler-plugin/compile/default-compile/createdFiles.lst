@@ -1,6 +1,8 @@
 TennisScore.class
 TennisGame.class
 PlayGame.class
+InvalidTennisPlayer.class
 PairTennisGameScore.class
 PlayAGame$1.class
 PlayAGame$PlayGameSimulator.class
+PlayAGame.class
