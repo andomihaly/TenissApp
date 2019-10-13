@@ -1,12 +1,14 @@
 class TennisGame {
 
     private PairTennisGameScore ptgs;
+    private PlayGame actualGame;
     private static final int MINIMUM_NUMBER_OF_GAME_TO_WIN_SET = 3;
 
-    TennisGame(){
+    TennisGame(PlayGame realGame){
         ptgs = new PairTennisGameScore();
         ptgs.playerAScore = new TennisScore();
         ptgs.playerBScore = new TennisScore();
+        actualGame = realGame;
     }
 
     void addGame(String player) {
@@ -14,6 +16,8 @@ class TennisGame {
             ptgs.playerAScore.numberOfWonGame++;
         else if (player.equals("B"))
             ptgs.playerBScore.numberOfWonGame++;
+        else
+            throw new InvalidTennisPlayer();
     }
 
     PairTennisGameScore getCurrentScore() {
@@ -47,17 +51,36 @@ class TennisGame {
     }
 
     private void setWinningScores() {
-        if (ptgs.playerAScore.numberOfWonGame > MINIMUM_NUMBER_OF_GAME_TO_WIN_SET){
+        if (ptgs.playerAScore.numberOfWonGame > ptgs.playerBScore.numberOfWonGame)
             setWinnerSetScore(ptgs.playerAScore);
-        }
-        if (ptgs.playerBScore.numberOfWonGame > MINIMUM_NUMBER_OF_GAME_TO_WIN_SET){
+        else
             setWinnerSetScore(ptgs.playerBScore);
-        }
+        ptgs.playerAScore.numberOfWonGame = 0;
+        ptgs.playerBScore.numberOfWonGame = 0;
     }
 
     private void setWinnerSetScore(TennisScore player) {
-        player.set = 1;
+        player.set++;
         player.game = 0;
     }
 
+    public boolean IsMatchOver(int minimumWinningSet) {
+        if (ptgs.playerAScore.set > minimumWinningSet/2 || ptgs.playerBScore.set > minimumWinningSet/2)
+            return true;
+        return false;
+    }
+
+    public String getGame() {
+        return actualGame.GetWhoWonTheGame();
+    }
+
+    public String GetWinner(int minimumWinningSet) {
+        if (ptgs.playerAScore.set >= minimumWinningSet )
+            return "A";
+        else if (ptgs.playerBScore.set >= minimumWinningSet )
+            return "B";
+        else
+            return "X";
+    }
 }
+

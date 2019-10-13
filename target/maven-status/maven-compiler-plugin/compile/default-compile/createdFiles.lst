@@ -1,3 +1,6 @@
 TennisScore.class
 TennisGame.class
+PlayGame.class
 PairTennisGameScore.class
+PlayAGame$1.class
+PlayAGame$PlayGameSimulator.class
