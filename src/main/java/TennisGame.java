@@ -1,14 +1,16 @@
 class TennisGame {
 
     private PairTennisGameScore ptgs;
+    private TypeOfTennisMatch tennisMatchType;
     private PlayGame actualGame;
     private static final int MINIMUM_NUMBER_OF_GAME_TO_WIN_SET = 3;
 
-    TennisGame(PlayGame realGame){
+    TennisGame(PlayGame realGame, TypeOfTennisMatch totm){
         ptgs = new PairTennisGameScore();
         ptgs.playerAScore = new TennisScore();
         ptgs.playerBScore = new TennisScore();
         actualGame = realGame;
+        tennisMatchType = totm;
     }
 
     void addGame(String player) {
@@ -64,8 +66,9 @@ class TennisGame {
         player.game = 0;
     }
 
-    public boolean IsMatchOver(TypeOfTennisMatch matchType) {
-        if (ptgs.playerAScore.set > matchType.maximumSetInGame/2 || ptgs.playerBScore.set > matchType.maximumSetInGame/2)
+    public boolean IsMatchOver() {
+        if (ptgs.playerAScore.set > tennisMatchType.maximumSetInGame/2 ||
+                ptgs.playerBScore.set > tennisMatchType.maximumSetInGame/2)
             return true;
         return false;
     }
@@ -74,10 +77,10 @@ class TennisGame {
         return actualGame.GetWhoWonTheGame();
     }
 
-    public String GetWinner(int minimumWinningSet) {
-        if (ptgs.playerAScore.set >= minimumWinningSet )
+    public String GetWinner() {
+        if (ptgs.playerAScore.set >= tennisMatchType.maximumSetInGame/2 )
             return "A";
-        else if (ptgs.playerBScore.set >= minimumWinningSet )
+        else if (ptgs.playerBScore.set >= tennisMatchType.maximumSetInGame/2 )
             return "B";
         else
             return "X";

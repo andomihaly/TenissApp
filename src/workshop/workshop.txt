@@ -1,8 +1,6 @@
 Low level bugs
-- Match (Best of Three / Five) is not implemented properly - can be any best of four...
 
 Integration bugs
-- GetWinner input is minimumWinningSet (which is ok because in here we need 2 or 3 see clean code issues), but here is a missing function which is set the type of tennis game before start
 - if there is no winner GetWinner add "X" not exception
 
 High level bugs

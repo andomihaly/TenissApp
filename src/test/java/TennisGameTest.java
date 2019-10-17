@@ -7,7 +7,8 @@ public class TennisGameTest {
 
     @org.junit.Before
     public void setUp() {
-        tennisGame = new TennisGame(new FakePlayGame());
+
+        tennisGame = new TennisGame(new FakePlayGame(), TypeOfTennisMatch.BestOfThree);
     }
     @Test
     public void AfterNewGameScoreZero(){
@@ -95,9 +96,9 @@ public class TennisGameTest {
 
     @Test
     public void GameIsNotOverYet(){
-        Assert.assertEquals(false, tennisGame.IsMatchOver(TypeOfTennisMatch.BestOfThree));
+        Assert.assertEquals(false, tennisGame.IsMatchOver());
         addWinningGameForBPlayer(4);
-        Assert.assertEquals(false, tennisGame.IsMatchOver(TypeOfTennisMatch.BestOfThree));
+        Assert.assertEquals(false, tennisGame.IsMatchOver());
     }
 
     @Test
@@ -106,34 +107,17 @@ public class TennisGameTest {
         tennisGame.getCurrentScore();
         addWinningGameForAPlayer(4);
         tennisGame.getCurrentScore();
-        Assert.assertEquals(true, tennisGame.IsMatchOver(TypeOfTennisMatch.BestOfThree));
+        Assert.assertEquals(true, tennisGame.IsMatchOver());
     }
 
-    @Test
-    public void BestOfFiveGameIsNotOver(){
-        addWinningGameForAPlayer(4);
-        tennisGame.getCurrentScore();
-        addWinningGameForAPlayer(4);
-        tennisGame.getCurrentScore();
-        Assert.assertEquals(false, tennisGame.IsMatchOver(TypeOfTennisMatch.BestOfFive));
-    }
-    @Test
-    public void BestOfFiveGameIsOver(){
-        addWinningGameForAPlayer(4);
-        tennisGame.getCurrentScore();
-        addWinningGameForAPlayer(4);
-        tennisGame.getCurrentScore();
-        addWinningGameForAPlayer(4);
-        tennisGame.getCurrentScore();
-        Assert.assertEquals(true, tennisGame.IsMatchOver(TypeOfTennisMatch.BestOfFive));
-    }
+
     @Test
     public void GetWinnerName(){
         addWinningGameForAPlayer(4);
         tennisGame.getCurrentScore();
         addWinningGameForAPlayer(4);
         tennisGame.getCurrentScore();
-        Assert.assertEquals("A", tennisGame.GetWinner(2));
+        Assert.assertEquals("A", tennisGame.GetWinner());
     }
     @Test
     public void GetBWinnerName(){
@@ -141,7 +125,7 @@ public class TennisGameTest {
         tennisGame.getCurrentScore();
         addWinningGameForBPlayer(4);
         tennisGame.getCurrentScore();
-        Assert.assertEquals("B", tennisGame.GetWinner(2));
+        Assert.assertEquals("B", tennisGame.GetWinner());
     }
 
     private void addAnEqualGame(int numberOfEqualGame) {
@@ -170,12 +154,6 @@ public class TennisGameTest {
     private void addWinningGame(int numberOfWonGame, String player) {
         for (int i=0; i<numberOfWonGame; i++) {
             tennisGame.addGame(player);
-        }
-    }
-
-    static class FakePlayGame implements PlayGame {
-        public String GetWhoWonTheGame() {
-            return "A";
         }
     }
 }
