@@ -67,8 +67,8 @@ class TennisGame {
     }
 
     public boolean IsMatchOver() {
-        if (ptgs.playerAScore.set > tennisMatchType.maximumSetInGame/2 ||
-                ptgs.playerBScore.set > tennisMatchType.maximumSetInGame/2)
+        if (ptgs.playerAScore.set > numberOfWonSetsToWinMatch() ||
+                ptgs.playerBScore.set > numberOfWonSetsToWinMatch())
             return true;
         return false;
     }
@@ -78,12 +78,16 @@ class TennisGame {
     }
 
     public String GetWinner() {
-        if (ptgs.playerAScore.set >= tennisMatchType.maximumSetInGame/2 )
+        if (ptgs.playerAScore.set >= numberOfWonSetsToWinMatch())
             return "A";
-        else if (ptgs.playerBScore.set >= tennisMatchType.maximumSetInGame/2 )
+        else if (ptgs.playerBScore.set >= numberOfWonSetsToWinMatch())
             return "B";
         else
             throw new NoWinnerYet();
+    }
+
+    private int numberOfWonSetsToWinMatch() {
+        return tennisMatchType.maximumSetInGame / 2;
     }
 }
 

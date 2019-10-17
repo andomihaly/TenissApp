@@ -1,13 +1,10 @@
 Low level bugs
 
 Integration bugs
-- if there is no winner GetWinner add "X" not exception
 
 High level bugs
 - If GetCurrrentScore is not call we can't recognize that we win the set
 
 Clean Code issues:
-- IsMatchOver
-    + minimumWinningSet name desinformation
-    + minimumWinningSet/2  -> do you have enough winned set algoritm
+
 - Everything in One Class -> practice "SOLID"
