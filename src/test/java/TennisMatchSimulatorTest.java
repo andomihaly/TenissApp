@@ -1,4 +1,7 @@
 
+import Tennis.TennisGame;
+import Tennis.TennisMatch;
+import Tennis.TypeOfTennisMatch;
 import org.junit.*;
 
 public class TennisMatchSimulatorTest {

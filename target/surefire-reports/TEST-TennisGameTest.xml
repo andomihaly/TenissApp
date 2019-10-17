@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="17" failures="0" name="TennisGameTest" time="0" errors="0" skipped="0">
+<testsuite tests="17" failures="0" name="TennisGameTest" time="0.008" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.4+10-b304.69"/>
@@ -66,16 +66,16 @@
   <testcase classname="TennisGameTest" name="WinLongTwoSet" time="0"/>
   <testcase classname="TennisGameTest" name="GetBWinnerName" time="0"/>
   <testcase classname="TennisGameTest" name="after2GameScoreEquals" time="0"/>
-  <testcase classname="TennisGameTest" name="GetWinnerName" time="0"/>
-  <testcase classname="TennisGameTest" name="invalidPlayerGetGame" time="0"/>
+  <testcase classname="TennisGameTest" name="GetWinnerName" time="0.004"/>
+  <testcase classname="TennisGameTest" name="invalidPlayerGetGame" time="0.001"/>
   <testcase classname="TennisGameTest" name="BestOfThreeGameIsOver" time="0"/>
-  <testcase classname="TennisGameTest" name="AfterOneGame15point" time="0"/>
+  <testcase classname="TennisGameTest" name="AfterOneGame15point" time="0.001"/>
   <testcase classname="TennisGameTest" name="GameIsNotOverYet" time="0"/>
   <testcase classname="TennisGameTest" name="EasyWinningSet" time="0"/>
-  <testcase classname="TennisGameTest" name="longSetGame" time="0"/>
+  <testcase classname="TennisGameTest" name="longSetGame" time="0.001"/>
   <testcase classname="TennisGameTest" name="AfterNewGameScoreZero" time="0"/>
   <testcase classname="TennisGameTest" name="AfterTwoGame30point" time="0"/>
-  <testcase classname="TennisGameTest" name="after8GameThereIsNoWinner" time="0"/>
+  <testcase classname="TennisGameTest" name="after8GameThereIsNoWinner" time="0.001"/>
   <testcase classname="TennisGameTest" name="WinTwoSet" time="0"/>
   <testcase classname="TennisGameTest" name="FourGameToOneGameWinningSet" time="0"/>
   <testcase classname="TennisGameTest" name="noWinnerYet" time="0"/>

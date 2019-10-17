@@ -1,18 +1,20 @@
-class TennisGame {
+package Tennis;
 
-    private PairTennisGameScore ptgs;
+public class TennisGame {
+
+    public PairTennisGameScore ptgs;
     private TypeOfTennisMatch tennisMatchType;
 
     private static final int MINIMUM_NUMBER_OF_GAME_TO_WIN_SET = 3;
 
-    TennisGame(TypeOfTennisMatch totm){
+    public TennisGame(TypeOfTennisMatch totm){
         ptgs = new PairTennisGameScore();
         ptgs.playerAScore = new TennisScore();
         ptgs.playerBScore = new TennisScore();
         tennisMatchType = totm;
     }
 
-    void addGame(String player) {
+    public void addGame(String player) {
         if (player.equals("A"))
             ptgs.playerAScore.numberOfWonGame++;
         else if (player.equals("B"))
@@ -25,7 +27,7 @@ class TennisGame {
         }
     }
 
-    PairTennisGameScore getCurrentScore() {
+    public PairTennisGameScore getCurrentScore() {
         calculateGameScore(ptgs.playerAScore);
         calculateGameScore(ptgs.playerBScore);
         return ptgs;

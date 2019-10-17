@@ -1,4 +1,5 @@
 
+import Tennis.*;
 import org.junit.*;
 
 public class TennisGameTest {

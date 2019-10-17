@@ -1,3 +1,5 @@
+package Tennis;
+
 public enum TypeOfTennisMatch {
     BestOfThree (3),
     BestOfFive (5);

@@ -1,7 +1,9 @@
+package Tennis;
+
 public class TennisMatch {
     private PlayGame actualGame;
 
-    TennisMatch(PlayGame realGame){
+    public TennisMatch(PlayGame realGame){
         actualGame = realGame;
     }
     public String getGame() {

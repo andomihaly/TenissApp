@@ -1,3 +1,5 @@
+import Tennis.TennisGame;
+import Tennis.TypeOfTennisMatch;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
