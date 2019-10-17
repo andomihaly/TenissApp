@@ -127,6 +127,10 @@ public class TennisGameTest {
         tennisGame.getCurrentScore();
         Assert.assertEquals("B", tennisGame.GetWinner());
     }
+    @Test(expected = NoWinnerYet.class)
+    public void noWinnerYet(){
+        tennisGame.GetWinner();
+    }
 
     private void addAnEqualGame(int numberOfEqualGame) {
         for (int i=0; i<numberOfEqualGame; i++){

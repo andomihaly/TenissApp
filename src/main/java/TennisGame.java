@@ -83,7 +83,7 @@ class TennisGame {
         else if (ptgs.playerBScore.set >= tennisMatchType.maximumSetInGame/2 )
             return "B";
         else
-            return "X";
+            throw new NoWinnerYet();
     }
 }
 
