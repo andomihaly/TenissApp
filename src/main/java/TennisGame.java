@@ -2,14 +2,13 @@ class TennisGame {
 
     private PairTennisGameScore ptgs;
     private TypeOfTennisMatch tennisMatchType;
-    private PlayGame actualGame;
+
     private static final int MINIMUM_NUMBER_OF_GAME_TO_WIN_SET = 3;
 
-    TennisGame(PlayGame realGame, TypeOfTennisMatch totm){
+    TennisGame(TypeOfTennisMatch totm){
         ptgs = new PairTennisGameScore();
         ptgs.playerAScore = new TennisScore();
         ptgs.playerBScore = new TennisScore();
-        actualGame = realGame;
         tennisMatchType = totm;
     }
 
@@ -20,18 +19,15 @@ class TennisGame {
             ptgs.playerBScore.numberOfWonGame++;
         else
             throw new InvalidTennisPlayer();
-        if (isSomebodyWinTheCurrentSet())
-        {
+        if (isSomebodyWinTheCurrentSet()) {
             setSetScore();
             prepareNewSet();
         }
     }
 
     PairTennisGameScore getCurrentScore() {
-
         calculateGameScore(ptgs.playerAScore);
         calculateGameScore(ptgs.playerBScore);
-
         return ptgs;
     }
 
@@ -76,9 +72,7 @@ class TennisGame {
         return false;
     }
 
-    public String getGame() {
-        return actualGame.GetWhoWonTheGame();
-    }
+
 
     public String GetWinner() {
         if (ptgs.playerAScore.set >= numberOfWonSetsToWinMatch())

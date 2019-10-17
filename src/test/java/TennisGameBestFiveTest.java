@@ -9,7 +9,7 @@ public class TennisGameBestFiveTest {
     @Before
     public void setUp() {
 
-        tennisGame = new TennisGame(new FakePlayGame(), TypeOfTennisMatch.BestOfFive);
+        tennisGame = new TennisGame(TypeOfTennisMatch.BestOfFive);
     }
     @Test
     public void BestOfFiveGameIsNotOver(){

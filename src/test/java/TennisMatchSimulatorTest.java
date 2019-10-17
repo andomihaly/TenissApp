@@ -7,9 +7,10 @@ public class TennisMatchSimulatorTest {
 
     @Test
     public void AfterNewGameScoreZero(){
-        tennisGame = new TennisGame(new FakePlayGame(), TypeOfTennisMatch.BestOfThree);
+        tennisGame = new TennisGame(TypeOfTennisMatch.BestOfThree);
+        TennisMatch tm = new TennisMatch(new FakePlayGame());
         while (!tennisGame.IsMatchOver()) {
-            tennisGame.addGame(tennisGame.getGame());
+            tennisGame.addGame(tm.getGame());
             tennisGame.getCurrentScore();
         }
         Assert.assertEquals("A", tennisGame.GetWinner());

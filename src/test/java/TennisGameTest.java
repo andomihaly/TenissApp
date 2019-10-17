@@ -7,8 +7,7 @@ public class TennisGameTest {
 
     @org.junit.Before
     public void setUp() {
-
-        tennisGame = new TennisGame(new FakePlayGame(), TypeOfTennisMatch.BestOfThree);
+        tennisGame = new TennisGame(TypeOfTennisMatch.BestOfThree);
     }
     @Test
     public void AfterNewGameScoreZero(){
