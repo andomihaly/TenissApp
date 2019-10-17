@@ -93,9 +93,9 @@ public class TennisGameTest {
 
     @Test
     public void GameIsNotOverYet(){
-        Assert.assertEquals(false, tennisGame.IsMatchOver());
+        Assert.assertFalse(tennisGame.IsMatchOver());
         addWinningGameForBPlayer(4);
-        Assert.assertEquals(false, tennisGame.IsMatchOver());
+        Assert.assertFalse(tennisGame.IsMatchOver());
     }
 
     @Test
@@ -104,7 +104,7 @@ public class TennisGameTest {
         tennisGame.getCurrentScore();
         addWinningGameForAPlayer(4);
         tennisGame.getCurrentScore();
-        Assert.assertEquals(true, tennisGame.IsMatchOver());
+        Assert.assertTrue(tennisGame.IsMatchOver());
     }
 
 

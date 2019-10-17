@@ -13,60 +13,42 @@ public class TennisGameBestFiveTest {
     }
     @Test
     public void BestOfFiveGameIsNotOver(){
-        addWinningGameForAPlayer(4);
+        addWinningSetForAPlayer();
         tennisGame.getCurrentScore();
-        addWinningGameForAPlayer(4);
+        addWinningSetForAPlayer();
         tennisGame.getCurrentScore();
-        Assert.assertEquals(false, tennisGame.IsMatchOver());
+        Assert.assertFalse(tennisGame.IsMatchOver());
     }
     @Test
     public void BestOfFiveGameIsOver(){
-        addWinningGameForAPlayer(4);
+        addWinningSetForAPlayer();
         tennisGame.getCurrentScore();
-        addWinningGameForAPlayer(4);
+        addWinningSetForAPlayer();
         tennisGame.getCurrentScore();
-        addWinningGameForAPlayer(4);
+        addWinningSetForAPlayer();
         tennisGame.getCurrentScore();
-        Assert.assertEquals(true, tennisGame.IsMatchOver());
-    }
-
-    private void addAnEqualGame(int numberOfEqualGame) {
-        for (int i=0; i<numberOfEqualGame; i++){
-            addAnEqualGame();
-        }
-    }
-    private void addAnEqualGame() {
-        addWinningGameForAPlayer(1);
-        addWinningGameForBPlayer(1);
-    }
-
-    private void AssertOnePlayerScore(int set, int game, TennisScore ts) {
-        Assert.assertEquals(game, ts.game);
-        Assert.assertEquals(set, ts.set);
+        Assert.assertTrue(tennisGame.IsMatchOver());
     }
 
     @Test
     public void GetWinnerName(){
-        addWinningGameForAPlayer(4);
+        addWinningSetForAPlayer();
         tennisGame.getCurrentScore();
-        addWinningGameForAPlayer(4);
+        addWinningSetForAPlayer();
         tennisGame.getCurrentScore();
-        addWinningGameForAPlayer(4);
+        addWinningSetForAPlayer();
         tennisGame.getCurrentScore();
         Assert.assertEquals("A", tennisGame.GetWinner());
     }
 
-    private void addWinningGameForAPlayer(int numberOfWonGame) {
-        addWinningGame(numberOfWonGame, "A");
+    private void addWinningSetForAPlayer() {
+        addWinningGame();
     }
+    
 
-    private void addWinningGameForBPlayer(int numberOfWonGame) {
-        addWinningGame(numberOfWonGame, "B");
-    }
-
-    private void addWinningGame(int numberOfWonGame, String player) {
-        for (int i=0; i<numberOfWonGame; i++) {
-            tennisGame.addGame(player);
+    private void addWinningGame() {
+        for (int i = 0; i< 4; i++) {
+            tennisGame.addGame("A");
         }
     }
 }
