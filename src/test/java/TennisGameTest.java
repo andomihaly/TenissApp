@@ -42,7 +42,7 @@ public class TennisGameTest {
         addWinningGameForBPlayer(1);
         addWinningGameForAPlayer(1);
         addWinningGameForBPlayer(3);
-        AssertOnePlayerScore(0, 15, tennisGame.getCurrentScore().playerAScore);
+        AssertOnePlayerScore(0, 0, tennisGame.getCurrentScore().playerAScore);
         AssertOnePlayerScore(1, 0, tennisGame.getCurrentScore().playerBScore);
     }
 
@@ -66,7 +66,7 @@ public class TennisGameTest {
         addWinningGameForBPlayer(4);
         addAnEqualGame(4);
         addWinningGameForBPlayer(1);
-        AssertOnePlayerScore(0, 40, tennisGame.getCurrentScore().playerAScore);
+        AssertOnePlayerScore(0, 0, tennisGame.getCurrentScore().playerAScore);
         AssertOnePlayerScore(1, 0, tennisGame.getCurrentScore().playerBScore);
     }
     @Test(expected = InvalidTennisPlayer.class)
@@ -85,13 +85,11 @@ public class TennisGameTest {
     @Test
     public void WinLongTwoSet(){
         addWinningGameForBPlayer(4);
-        tennisGame.getCurrentScore();
-        addWinningGameForBPlayer(4);
-        addWinningGameForAPlayer(3);
-        addAnEqualGame(4);
+        addWinningGameForBPlayer(1);
+        addAnEqualGame(7);
         addWinningGameForBPlayer(1);
         AssertOnePlayerScore(2, 0, tennisGame.getCurrentScore().playerBScore);
-        AssertOnePlayerScore(0, 40, tennisGame.getCurrentScore().playerAScore);
+        AssertOnePlayerScore(0, 0, tennisGame.getCurrentScore().playerAScore);
     }
 
     @Test

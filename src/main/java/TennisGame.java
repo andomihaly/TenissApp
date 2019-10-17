@@ -20,16 +20,17 @@ class TennisGame {
             ptgs.playerBScore.numberOfWonGame++;
         else
             throw new InvalidTennisPlayer();
+        if (isSomebodyWinTheCurrentSet())
+        {
+            setSetScore();
+            prepareNewSet();
+        }
     }
 
     PairTennisGameScore getCurrentScore() {
 
         calculateGameScore(ptgs.playerAScore);
         calculateGameScore(ptgs.playerBScore);
-        if (isSomebodyWinTheCurrentSet())
-        {
-            setWinningScores();
-        }
 
         return ptgs;
     }
@@ -52,11 +53,13 @@ class TennisGame {
                 && Math.abs(ptgs.playerAScore.numberOfWonGame -ptgs.playerBScore.numberOfWonGame)>1;
     }
 
-    private void setWinningScores() {
+    private void setSetScore() {
         if (ptgs.playerAScore.numberOfWonGame > ptgs.playerBScore.numberOfWonGame)
             setWinnerSetScore(ptgs.playerAScore);
         else
             setWinnerSetScore(ptgs.playerBScore);
+    }
+    private void prepareNewSet(){
         ptgs.playerAScore.numberOfWonGame = 0;
         ptgs.playerBScore.numberOfWonGame = 0;
     }

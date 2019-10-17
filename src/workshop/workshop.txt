@@ -3,8 +3,9 @@ Low level bugs
 Integration bugs
 
 High level bugs
-- If GetCurrrentScore is not call we can't recognize that we win the set
 
 Clean Code issues:
-
 - Everything in One Class -> practice "SOLID"
+
+Next Feature:
+Store the game point for old sets.

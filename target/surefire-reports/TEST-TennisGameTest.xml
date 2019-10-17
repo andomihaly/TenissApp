@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="17" failures="0" name="TennisGameTest" time="0.016" errors="0" skipped="0">
+<testsuite tests="17" failures="0" name="TennisGameTest" time="0.015" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.4+10-b304.69"/>
@@ -78,6 +78,6 @@
   <testcase classname="TennisGameTest" name="after8GameThereIsNoWinner" time="0"/>
   <testcase classname="TennisGameTest" name="WinTwoSet" time="0"/>
   <testcase classname="TennisGameTest" name="FourGameToOneGameWinningSet" time="0"/>
-  <testcase classname="TennisGameTest" name="noWinnerYet" time="0.016"/>
+  <testcase classname="TennisGameTest" name="noWinnerYet" time="0.015"/>
   <testcase classname="TennisGameTest" name="AfterThreeGame40point" time="0"/>
 </testsuite>
