@@ -6,6 +6,15 @@ High level bugs
 
 Clean Code issues:
 - Everything in One Class -> practice "SOLID"
+SOLID design:
+
+Actors:
+- ScoreFollower - UI (see the current status and the score of the tennis match)
+- Playeres - (play the game and A or B win the Game)
+- Ruler - (organize the tennis match, control the match until end)
+        - (collect and store each game during the tennis match)
+
+
 
 Next Feature:
 Store the game point for old sets.
