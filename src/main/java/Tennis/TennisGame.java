@@ -5,6 +5,7 @@ public class TennisGame {
     public PairTennisGameScore ptgs;
     private TypeOfTennisMatch tennisMatchType;
     private int [] [] numberOfWonGamesInSets = new int[2][5];
+    private int [] numberOfWonSets = new int[2];
     private int currentSetIndex;
     private final static int PLAYER_A_INDEX = 0;
     private final static int PLAYER_B_INDEX = 1;
@@ -22,6 +23,8 @@ public class TennisGame {
             numberOfWonGamesInSets[PLAYER_A_INDEX][i]=0;
             numberOfWonGamesInSets[PLAYER_B_INDEX][i]=0;
         }
+        numberOfWonSets[PLAYER_A_INDEX]=0;
+        numberOfWonSets[PLAYER_B_INDEX]=0;
     }
     public int[][] getNumberOfWonGameInSets(){
         return numberOfWonGamesInSets;
@@ -63,8 +66,8 @@ public class TennisGame {
         else
             throw new InvalidTennisPlayer();
         if (isSomebodyWinTheCurrentSet()) {
-            setSetScore();
-            prepareNewSet();
+            addWonSetToPlayer();
+            initNextSet();
         }
     }
 
@@ -73,19 +76,20 @@ public class TennisGame {
                 numberOfWonGamesInSets[PLAYER_B_INDEX][currentSetIndex] > MINIMUM_NUMBER_OF_GAME_TO_WIN_SET ) &&
                 Math.abs(numberOfWonGamesInSets[PLAYER_A_INDEX][currentSetIndex] - numberOfWonGamesInSets[PLAYER_B_INDEX][currentSetIndex])>1;
     }
-
-    private void setSetScore() {
+    private void addWonSetToPlayer(){
+        if (numberOfWonGamesInSets[PLAYER_A_INDEX][currentSetIndex]> numberOfWonGamesInSets[PLAYER_B_INDEX][currentSetIndex])
+            numberOfWonSets[PLAYER_A_INDEX]++;
+        else
+            numberOfWonSets[PLAYER_B_INDEX]++;
+    }
+    private void initNextSet() {
         currentSetIndex++;
     }
 
-    private void prepareNewSet(){
-        ptgs.playerAScore.numberOfWonGame = 0;
-        ptgs.playerBScore.numberOfWonGame = 0;
-    }
 
     public boolean IsMatchOver() {
-        if (ptgs.playerAScore.set > numberOfWonSetsToWinMatch() ||
-                ptgs.playerBScore.set > numberOfWonSetsToWinMatch())
+        if (numberOfWonSets[PLAYER_A_INDEX] > numberOfWonSetsToWinMatch() ||
+                numberOfWonSets[PLAYER_B_INDEX] > numberOfWonSetsToWinMatch())
             return true;
         return false;
     }
@@ -93,9 +97,9 @@ public class TennisGame {
 
 
     public String GetWinner() {
-        if (ptgs.playerAScore.set >= numberOfWonSetsToWinMatch())
+        if (numberOfWonSets[PLAYER_A_INDEX] >= numberOfWonSetsToWinMatch())
             return "A";
-        else if (ptgs.playerBScore.set >= numberOfWonSetsToWinMatch())
+        else if (numberOfWonSets[PLAYER_B_INDEX] >= numberOfWonSetsToWinMatch())
             return "B";
         else
             throw new NoWinnerYet();
