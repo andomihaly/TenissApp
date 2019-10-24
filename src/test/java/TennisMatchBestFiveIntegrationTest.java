@@ -1,31 +1,31 @@
-import Tennis.PairTennisGameScore;
-import Tennis.TennisGame;
+import Tennis.PairTennisMatchScore;
+import Tennis.TennisMatch;
 import Tennis.TypeOfTennisMatch;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TennisGameBestFiveIntegrationTest {
+public class TennisMatchBestFiveIntegrationTest {
 
-    private TennisGame tennisGame;
+    private TennisMatch tennisMatch;
 
     @Before
     public void setUp() {
 
-        tennisGame = new TennisGame(TypeOfTennisMatch.BestOfFive);
+        tennisMatch = new TennisMatch(TypeOfTennisMatch.BestOfFive);
     }
     @Test
     public void BestOfFiveGameIsNotOver(){
         addWinningSetForAPlayer();
         addWinningSetForAPlayer();
-        Assert.assertFalse(tennisGame.IsMatchOver());
+        Assert.assertFalse(tennisMatch.IsMatchOver());
     }
     @Test
     public void BestOfFiveGameIsOver(){
         addWinningSetForAPlayer();
         addWinningSetForAPlayer();
         addWinningSetForAPlayer();
-        Assert.assertTrue(tennisGame.IsMatchOver());
+        Assert.assertTrue(tennisMatch.IsMatchOver());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class TennisGameBestFiveIntegrationTest {
         addWinningSetForAPlayer();
         addWinningSetForAPlayer();
         addWinningSetForAPlayer();
-        Assert.assertEquals("A", tennisGame.GetWinner());
+        Assert.assertEquals("A", tennisMatch.GetWinner());
     }
     @Test
     public void BestOfFiveGameLong(){
@@ -42,7 +42,7 @@ public class TennisGameBestFiveIntegrationTest {
         addWinningSetForAPlayer();
         addWinningSetForBPlayer();
         addWinningSetForAPlayer();
-        PairTennisGameScore ptgs = tennisGame.getCurrentScore();
+        PairTennisMatchScore ptgs = tennisMatch.getCurrentScore();
         Assert.assertEquals(0, ptgs.playerAScore.game);
         Assert.assertEquals(3, ptgs.playerAScore.set);
         Assert.assertEquals(0, ptgs.playerBScore.game);
@@ -59,7 +59,7 @@ public class TennisGameBestFiveIntegrationTest {
 
     private void addWinningGame(String player) {
         for (int i = 0; i< 4; i++) {
-            tennisGame.addGame(player);
+            tennisMatch.addGame(player);
         }
     }
 }

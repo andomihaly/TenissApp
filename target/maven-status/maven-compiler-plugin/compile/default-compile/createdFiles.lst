@@ -1,6 +1,11 @@
 Starter\PlayAGame.class
-Tennis\PairTennisGameScore.class
-Tennis\TennisGame.class
+Tennis\PlayTennis.class
+Tennis\CalculateTennisScore.class
+Tennis\PairTennisMatchScore.class
+Tennis\PlayerActualScore.class
 Tennis\TypeOfTennisMatch.class
-Starter\PlayGameSimulator.class
+Tennis\TennisMatch.class
+Tennis\InvalidTennisPlayer.class
 Tennis\NoWinnerYet.class
+Tennis\PlayTennisGame.class
+Starter\PlayTennisSimulator.class

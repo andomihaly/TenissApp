@@ -3,13 +3,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TennisGameIntegrationTest {
+public class TennisMatchIntegrationTest {
 
-    private TennisGame tennisGame;
+    private TennisMatch tennisMatch;
 
     @Before
     public void setUp() {
-        tennisGame = new TennisGame(TypeOfTennisMatch.BestOfThree);
+        tennisMatch = new TennisMatch(TypeOfTennisMatch.BestOfThree);
     }
 
     @Test
@@ -17,23 +17,23 @@ public class TennisGameIntegrationTest {
         addWinningGameForBPlayer(1);
         addWinningGameForAPlayer(1);
         addWinningGameForBPlayer(3);
-        AssertOnePlayerScore(0, 0, tennisGame.getCurrentScore().playerAScore);
-        AssertOnePlayerScore(1, 0, tennisGame.getCurrentScore().playerBScore);
+        AssertOnePlayerScore(0, 0, tennisMatch.getCurrentScore().playerAScore);
+        AssertOnePlayerScore(1, 0, tennisMatch.getCurrentScore().playerBScore);
     }
 
     @Test
     public void after2GameScoreEquals(){
         addAnEqualGame();
-        AssertOnePlayerScore(0, 15, tennisGame.getCurrentScore().playerAScore);
-        AssertOnePlayerScore(0, 15, tennisGame.getCurrentScore().playerBScore);
+        AssertOnePlayerScore(0, 15, tennisMatch.getCurrentScore().playerAScore);
+        AssertOnePlayerScore(0, 15, tennisMatch.getCurrentScore().playerBScore);
     }
     @Test
     public void after8GameThereIsNoWinner(){
         addWinningGameForAPlayer(3);
         addWinningGameForBPlayer(4);
         addWinningGameForAPlayer(1);
-        AssertOnePlayerScore(0, 40, tennisGame.getCurrentScore().playerAScore);
-        AssertOnePlayerScore(0, 40, tennisGame.getCurrentScore().playerBScore);
+        AssertOnePlayerScore(0, 40, tennisMatch.getCurrentScore().playerAScore);
+        AssertOnePlayerScore(0, 40, tennisMatch.getCurrentScore().playerBScore);
     }
     @Test
     public void longSetGame(){
@@ -41,23 +41,23 @@ public class TennisGameIntegrationTest {
         addWinningGameForBPlayer(4);
         addAnEqualGame(4);
         addWinningGameForBPlayer(1);
-        AssertOnePlayerScore(0, 0, tennisGame.getCurrentScore().playerAScore);
-        AssertOnePlayerScore(1, 0, tennisGame.getCurrentScore().playerBScore);
+        AssertOnePlayerScore(0, 0, tennisMatch.getCurrentScore().playerAScore);
+        AssertOnePlayerScore(1, 0, tennisMatch.getCurrentScore().playerBScore);
     }
     @Test
     public void WinTwoSet(){
         addWinningGameForBPlayer(4);
-        tennisGame.getCurrentScore();
+        tennisMatch.getCurrentScore();
         addWinningGameForBPlayer(4);
-        AssertOnePlayerScore(2, 0, tennisGame.getCurrentScore().playerBScore);
-        AssertOnePlayerScore(0, 0, tennisGame.getCurrentScore().playerAScore);
+        AssertOnePlayerScore(2, 0, tennisMatch.getCurrentScore().playerBScore);
+        AssertOnePlayerScore(0, 0, tennisMatch.getCurrentScore().playerAScore);
     }
     @Test
     public void BestOfFiveGameLong(){
         addWinningGameForBPlayer(4);
         addWinningGameForAPlayer(4);
         addWinningGameForBPlayer(4);
-        PairTennisGameScore ptgs = tennisGame.getCurrentScore();
+        PairTennisMatchScore ptgs = tennisMatch.getCurrentScore();
         Assert.assertEquals(0, ptgs.playerAScore.game);
         Assert.assertEquals(1, ptgs.playerAScore.set);
         Assert.assertEquals(0, ptgs.playerBScore.game);
@@ -76,7 +76,7 @@ public class TennisGameIntegrationTest {
         addWinningGameForBPlayer(1);
     }
 
-    private void AssertOnePlayerScore(int set, int game, TennisScore ts) {
+    private void AssertOnePlayerScore(int set, int game, PlayerActualScore ts) {
         Assert.assertEquals(game, ts.game);
         Assert.assertEquals(set, ts.set);
     }
@@ -91,7 +91,7 @@ public class TennisGameIntegrationTest {
 
     private void addWinningGame(int numberOfWonGame, String player) {
         for (int i=0; i<numberOfWonGame; i++) {
-            tennisGame.addGame(player);
+            tennisMatch.addGame(player);
         }
     }
 }

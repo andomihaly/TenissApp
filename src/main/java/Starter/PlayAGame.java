@@ -6,13 +6,13 @@ public class PlayAGame {
     public static void main(String [] args)
     {
         System.out.println("Play A tennis game");
-        TennisGame tennisGame = new TennisGame(TypeOfTennisMatch.BestOfFive);
+        TennisMatch tennisGame = new TennisMatch(TypeOfTennisMatch.BestOfFive);
         System.out.printf("GameNo. | A Set  | B Set  | A Game | B Game |%n");
         int numberOfGame=0;
-        TennisMatch tm = new TennisMatch(new PlayGameSimulator());
+        PlayTennisGame tm = new PlayTennisGame(new PlayTennisSimulator());
         while (!tennisGame.IsMatchOver()) {
             tennisGame.addGame(tm.getGame());
-            PairTennisGameScore ptgs = tennisGame.getCurrentScore();
+            PairTennisMatchScore ptgs = tennisGame.getCurrentScore();
             System.out.printf("  %-3s   |", numberOfGame++);
             System.out.printf("   %d   |    %d   |",ptgs.playerAScore.set,ptgs.playerBScore.set );
             System.out.printf("  %-5d  |  %-5d |%n",ptgs.playerAScore.game,ptgs.playerBScore.game );

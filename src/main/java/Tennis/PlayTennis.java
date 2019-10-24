@@ -1,5 +1,5 @@
 package Tennis;
 
-public interface PlayGame {
+public interface PlayTennis {
     String GetWhoWonTheGame();
 }

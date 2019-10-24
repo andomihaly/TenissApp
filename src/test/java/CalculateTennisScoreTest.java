@@ -43,41 +43,41 @@ public class CalculateTennisScoreTest {
     @Test
     public void after8GameThereIsNoWinner(){
         int [][] wonGame = {{4,0},{4,0}};
-        PairTennisGameScore ptgs= calculateTennisScore.getCurrentScore(wonGame , 0);
-        AssertOnePlayerScore(0, 40, ptgs.playerAScore);
-        AssertOnePlayerScore(0, 40, ptgs.playerBScore);
+        PairTennisMatchScore ptms= calculateTennisScore.getCurrentScore(wonGame , 0);
+        AssertOnePlayerScore(0, 40, ptms.playerAScore);
+        AssertOnePlayerScore(0, 40, ptms.playerBScore);
     }
 
     @Test
     public void longSetGame(){
         int [][] wonGame = {{8,0},{7,0}};
-        PairTennisGameScore ptgs= calculateTennisScore.getCurrentScore(wonGame , 0);
-        AssertOnePlayerScore(0, 40, ptgs.playerAScore);
-        AssertOnePlayerScore(0, 40, ptgs.playerBScore);
+        PairTennisMatchScore ptms= calculateTennisScore.getCurrentScore(wonGame , 0);
+        AssertOnePlayerScore(0, 40, ptms.playerAScore);
+        AssertOnePlayerScore(0, 40, ptms.playerBScore);
 
     }
     @Test
     public void WonSetButNewSetNotStarted(){
         int [][] wonGame = {{5,0},{7,4}};
-        PairTennisGameScore ptgs= calculateTennisScore.getCurrentScore(wonGame , 1);
-        AssertOnePlayerScore(0, 0, ptgs.playerAScore);
-        AssertOnePlayerScore(1, 40, ptgs.playerBScore);
+        PairTennisMatchScore ptms= calculateTennisScore.getCurrentScore(wonGame , 1);
+        AssertOnePlayerScore(0, 0, ptms.playerAScore);
+        AssertOnePlayerScore(1, 40, ptms.playerBScore);
     }
     @Test
     public void WinTwoSet(){
         int [][] wonGame = {{5,0,0},{7,4,0}};
-        PairTennisGameScore ptgs= calculateTennisScore.getCurrentScore(wonGame , 2);
-        AssertOnePlayerScore(0, 0, ptgs.playerAScore);
-        AssertOnePlayerScore(2, 0, ptgs.playerBScore);
+        PairTennisMatchScore ptms= calculateTennisScore.getCurrentScore(wonGame , 2);
+        AssertOnePlayerScore(0, 0, ptms.playerAScore);
+        AssertOnePlayerScore(2, 0, ptms.playerBScore);
     }
     @Test
     public void MaxGame(){
         int [][] wonGame = {{0,4,4,0,0},{4,0,0,4,4}};
-        PairTennisGameScore ptgs= calculateTennisScore.getCurrentScore(wonGame , 4);
-        AssertOnePlayerScore(2, 0, ptgs.playerAScore);
-        AssertOnePlayerScore(2, 40, ptgs.playerBScore);
+        PairTennisMatchScore ptms= calculateTennisScore.getCurrentScore(wonGame , 4);
+        AssertOnePlayerScore(2, 0, ptms.playerAScore);
+        AssertOnePlayerScore(2, 40, ptms.playerBScore);
     }
-    private void AssertOnePlayerScore(int set, int game, TennisScore ts) {
+    private void AssertOnePlayerScore(int set, int game, PlayerActualScore ts) {
         Assert.assertEquals(game, ts.game);
         Assert.assertEquals(set, ts.set);
     }

@@ -1,12 +1,12 @@
 package Tennis;
 
 public class CalculateTennisScore {
-    private PairTennisGameScore ptgs;
+    private PairTennisMatchScore ptgs;
     private int [][] wonSetsGames;
     private int actualSetIndex;
 
-    public PairTennisGameScore getCurrentScore(int [] [] wonGames, int actualSetIndex) {
-        ptgs = new PairTennisGameScore();
+    public PairTennisMatchScore getCurrentScore(int [] [] wonGames, int actualSetIndex) {
+        ptgs = new PairTennisMatchScore();
         wonSetsGames = wonGames;
         this.actualSetIndex = actualSetIndex;
 
@@ -33,8 +33,8 @@ public class CalculateTennisScore {
     }
 
     private void SetGameScoreAfterMatchIsEnd() {
-        ptgs.playerAScore = new TennisScore();
-        ptgs.playerBScore = new TennisScore();
+        ptgs.playerAScore = new PlayerActualScore();
+        ptgs.playerBScore = new PlayerActualScore();
     }
 
     private void setPlayersWonSets() {
@@ -46,18 +46,18 @@ public class CalculateTennisScore {
         }
     }
 
-    private TennisScore calculateGameScore(int player, int wonGameInSet) {
-        TennisScore tennisScore = new TennisScore();
+    private PlayerActualScore calculateGameScore(int player, int wonGameInSet) {
+        PlayerActualScore actualGameScore = new PlayerActualScore();
         if (wonGameInSet >=3){
-            tennisScore.game = 40;
+            actualGameScore.game = 40;
         }
         else if (wonGameInSet == 2){
-            tennisScore.game = 30;
+            actualGameScore.game = 30;
         }
         else if (wonGameInSet ==1){
-            tennisScore.game = 15;
+            actualGameScore.game = 15;
         }
-        return tennisScore;
+        return actualGameScore;
     }
 
 }

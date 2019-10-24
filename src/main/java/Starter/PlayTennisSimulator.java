@@ -1,8 +1,8 @@
 package Starter;
 
-import Tennis.PlayGame;
+import Tennis.PlayTennis;
 
-class PlayGameSimulator implements PlayGame {
+class PlayTennisSimulator implements PlayTennis {
     @Override
     public String GetWhoWonTheGame() {
         if (Math.random()>0.5)
