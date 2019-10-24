@@ -88,8 +88,13 @@ public class TennisGameTest {
         addWinningGameForBPlayer(1);
         addAnEqualGame(7);
         addWinningGameForBPlayer(1);
+        Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[1][0]);
+        Assert.assertEquals(9, tennisGame.getNumberOfWonGameInSets()[1][1]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[0][0]);
+        Assert.assertEquals(7, tennisGame.getNumberOfWonGameInSets()[0][1]);
         AssertOnePlayerScore(2, 0, tennisGame.getCurrentScore().playerBScore);
         AssertOnePlayerScore(0, 0, tennisGame.getCurrentScore().playerAScore);
+
     }
 
     @Test
@@ -128,6 +133,30 @@ public class TennisGameTest {
     @Test(expected = NoWinnerYet.class)
     public void noWinnerYet(){
         tennisGame.GetWinner();
+    }
+
+
+    @Test
+    public void afterInitNoWonGame(){
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[0][0]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[1][0]);
+    }
+    @Test
+    public void afterOneWinThereIsOneWon(){
+        addWinningGameForAPlayer(1);
+        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[0][0]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[1][0]);
+        addWinningGameForBPlayer(1);
+        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[0][0]);
+        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[1][0]);
+        addWinningGameForAPlayer(3);
+        Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[0][0]);
+        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[1][0]);
+        addWinningGameForAPlayer(1);
+        Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[0][0]);
+        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[0][1]);
+        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[1][0]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[1][1]);
     }
 
     private void addAnEqualGame(int numberOfEqualGame) {

@@ -4,6 +4,10 @@ public class TennisGame {
 
     public PairTennisGameScore ptgs;
     private TypeOfTennisMatch tennisMatchType;
+    private int [] [] numberOfWonGamesInSets = new int[2][5];
+    private int currentSetIndex;
+    private final static int PLAYER_A_INDEX = 0;
+    private final static int PLAYER_B_INDEX = 1;
 
     private static final int MINIMUM_NUMBER_OF_GAME_TO_WIN_SET = 3;
 
@@ -12,13 +16,50 @@ public class TennisGame {
         ptgs.playerAScore = new TennisScore();
         ptgs.playerBScore = new TennisScore();
         tennisMatchType = totm;
+        currentSetIndex = 0;
+        for (int i=0; i<5; i++)
+        {
+            numberOfWonGamesInSets[PLAYER_A_INDEX][i]=0;
+            numberOfWonGamesInSets[PLAYER_B_INDEX][i]=0;
+        }
+    }
+    public int[][] getNumberOfWonGameInSets(){
+        return numberOfWonGamesInSets;
+    }
+
+    public PairTennisGameScore getCurrentScore() {
+        ptgs.playerAScore = calculateGameScore(PLAYER_A_INDEX);
+        ptgs.playerBScore = calculateGameScore(PLAYER_B_INDEX);
+        for (int i=0; i<currentSetIndex; i++) {
+            if (numberOfWonGamesInSets[PLAYER_A_INDEX][i]>numberOfWonGamesInSets[PLAYER_B_INDEX][i])
+                ptgs.playerAScore.set++;
+            else
+                ptgs.playerBScore.set++;
+        }
+        return ptgs;
+    }
+
+    private TennisScore calculateGameScore(int player) {
+        TennisScore tennisScore = new TennisScore();
+        if (numberOfWonGamesInSets[player][currentSetIndex] >=3){
+            tennisScore.game = 40;
+        }
+        else if (numberOfWonGamesInSets[player][currentSetIndex] == 2){
+            tennisScore.game = 30;
+        }
+        else if (numberOfWonGamesInSets[player][currentSetIndex] ==1){
+            tennisScore.game = 15;
+        }
+        return tennisScore;
     }
 
     public void addGame(String player) {
-        if (player.equals("A"))
-            ptgs.playerAScore.numberOfWonGame++;
-        else if (player.equals("B"))
-            ptgs.playerBScore.numberOfWonGame++;
+        if (player.equals("A")) {
+            numberOfWonGamesInSets[PLAYER_A_INDEX][currentSetIndex]++;
+        }
+        else if (player.equals("B")) {
+            numberOfWonGamesInSets[PLAYER_B_INDEX][currentSetIndex]++;
+        }
         else
             throw new InvalidTennisPlayer();
         if (isSomebodyWinTheCurrentSet()) {
@@ -27,44 +68,19 @@ public class TennisGame {
         }
     }
 
-    public PairTennisGameScore getCurrentScore() {
-        calculateGameScore(ptgs.playerAScore);
-        calculateGameScore(ptgs.playerBScore);
-        return ptgs;
-    }
-
-    private void calculateGameScore(TennisScore tennisScore) {
-        if (tennisScore.numberOfWonGame >=3){
-            tennisScore.game = 40;
-        }
-        else if (tennisScore.numberOfWonGame ==2){
-            tennisScore.game = 30;
-        }
-        else if (tennisScore.numberOfWonGame ==1){
-            tennisScore.game = 15;
-        }
-    }
-
     private boolean isSomebodyWinTheCurrentSet() {
-        return (ptgs.playerAScore.numberOfWonGame > MINIMUM_NUMBER_OF_GAME_TO_WIN_SET ||
-                                    ptgs.playerBScore.numberOfWonGame > MINIMUM_NUMBER_OF_GAME_TO_WIN_SET)
-                && Math.abs(ptgs.playerAScore.numberOfWonGame -ptgs.playerBScore.numberOfWonGame)>1;
+        return (numberOfWonGamesInSets[PLAYER_A_INDEX][currentSetIndex] > MINIMUM_NUMBER_OF_GAME_TO_WIN_SET ||
+                numberOfWonGamesInSets[PLAYER_B_INDEX][currentSetIndex] > MINIMUM_NUMBER_OF_GAME_TO_WIN_SET ) &&
+                Math.abs(numberOfWonGamesInSets[PLAYER_A_INDEX][currentSetIndex] - numberOfWonGamesInSets[PLAYER_B_INDEX][currentSetIndex])>1;
     }
 
     private void setSetScore() {
-        if (ptgs.playerAScore.numberOfWonGame > ptgs.playerBScore.numberOfWonGame)
-            setWinnerSetScore(ptgs.playerAScore);
-        else
-            setWinnerSetScore(ptgs.playerBScore);
+        currentSetIndex++;
     }
+
     private void prepareNewSet(){
         ptgs.playerAScore.numberOfWonGame = 0;
         ptgs.playerBScore.numberOfWonGame = 0;
-    }
-
-    private void setWinnerSetScore(TennisScore player) {
-        player.set++;
-        player.game = 0;
     }
 
     public boolean IsMatchOver() {
