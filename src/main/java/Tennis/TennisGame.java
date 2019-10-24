@@ -13,7 +13,6 @@ public class TennisGame {
     private static final int MINIMUM_NUMBER_OF_GAME_TO_WIN_SET = 3;
 
     public TennisGame(TypeOfTennisMatch totm){
-
         tennisMatchType = totm;
         currentSetIndex = 0;
         for (int i=0; i<5; i++)

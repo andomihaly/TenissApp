@@ -10,64 +10,79 @@ public class TennisGameTest {
     public void setUp() {
         tennisGame = new TennisGame(TypeOfTennisMatch.BestOfThree);
     }
-    @Test
-    public void AfterNewGameScoreZero(){
-        AssertOnePlayerScore(0, 0, tennisGame.getCurrentScore().playerAScore);
 
+    @Test
+    public void afterInitNoWonGame(){
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[0][0]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[1][0]);
     }
     @Test
-    public void AfterOneGame15point(){
+    public void storeGameWinsAfterSeveralGame(){
         addWinningGameForAPlayer(1);
-        AssertOnePlayerScore(0, 15, tennisGame.getCurrentScore().playerAScore);
-    }
-    @Test
-    public void AfterTwoGame30point(){
-        addWinningGameForAPlayer(2);
-        AssertOnePlayerScore(0, 30, tennisGame.getCurrentScore().playerAScore);
-    }
-
-    @Test
-    public void AfterThreeGame40point(){
+        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[0][0]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[1][0]);
+        addWinningGameForBPlayer(1);
+        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[0][0]);
+        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[1][0]);
         addWinningGameForAPlayer(3);
-        AssertOnePlayerScore(0, 40, tennisGame.getCurrentScore().playerAScore);
-    }
-
-    @Test
-    public void EasyWinningSet(){
-        addWinningGameForAPlayer(4);
-        AssertOnePlayerScore(1, 0, tennisGame.getCurrentScore().playerAScore);
+        Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[0][0]);
+        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[1][0]);
+        addWinningGameForAPlayer(1);
+        Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[0][0]);
+        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[0][1]);
+        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[1][0]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[1][1]);
     }
     @Test
     public void FourGameToOneGameWinningSet(){
         addWinningGameForBPlayer(1);
         addWinningGameForAPlayer(1);
         addWinningGameForBPlayer(3);
-        AssertOnePlayerScore(0, 0, tennisGame.getCurrentScore().playerAScore);
-        AssertOnePlayerScore(1, 0, tennisGame.getCurrentScore().playerBScore);
+        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[0][0]);
+        Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[1][0]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[0][1]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[1][1]);
+    }
+    @Test
+    public void BestFiveGame(){
+        addWinningGameForBPlayer(4);
+        addWinningGameForAPlayer(4);
+        addWinningGameForBPlayer(4);
+        addEqualGames(5);
+        addWinningGameForAPlayer(2);
+        addWinningGameForBPlayer(4);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[0][0]);
+        Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[1][0]);
+        Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[0][1]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[1][1]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[0][2]);
+        Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[1][2]);
+        Assert.assertEquals(7, tennisGame.getNumberOfWonGameInSets()[0][3]);
+        Assert.assertEquals(5, tennisGame.getNumberOfWonGameInSets()[1][3]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[0][4]);
+        Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[1][4]);
     }
 
-    @Test
-    public void after2GameScoreEquals(){
-        addAnEqualGame();
-        AssertOnePlayerScore(0, 15, tennisGame.getCurrentScore().playerAScore);
-        AssertOnePlayerScore(0, 15, tennisGame.getCurrentScore().playerBScore);
-    }
     @Test
     public void after8GameThereIsNoWinner(){
         addWinningGameForAPlayer(3);
         addWinningGameForBPlayer(4);
         addWinningGameForAPlayer(1);
-        AssertOnePlayerScore(0, 40, tennisGame.getCurrentScore().playerAScore);
-        AssertOnePlayerScore(0, 40, tennisGame.getCurrentScore().playerBScore);
+        Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[0][0]);
+        Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[1][0]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[0][1]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[1][1]);
     }
     @Test
     public void longSetGame(){
         addWinningGameForAPlayer(3);
         addWinningGameForBPlayer(4);
-        addAnEqualGame(4);
+        addEqualGames(4);
         addWinningGameForBPlayer(1);
-        AssertOnePlayerScore(0, 0, tennisGame.getCurrentScore().playerAScore);
-        AssertOnePlayerScore(1, 0, tennisGame.getCurrentScore().playerBScore);
+        Assert.assertEquals(7, tennisGame.getNumberOfWonGameInSets()[0][0]);
+        Assert.assertEquals(9, tennisGame.getNumberOfWonGameInSets()[1][0]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[0][1]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[1][1]);
     }
     @Test(expected = InvalidTennisPlayer.class)
     public void invalidPlayerGetGame(){
@@ -79,22 +94,23 @@ public class TennisGameTest {
         addWinningGameForBPlayer(4);
         tennisGame.getCurrentScore();
         addWinningGameForBPlayer(4);
-        AssertOnePlayerScore(2, 0, tennisGame.getCurrentScore().playerBScore);
-        AssertOnePlayerScore(0, 0, tennisGame.getCurrentScore().playerAScore);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[0][0]);
+        Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[1][0]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[0][1]);
+        Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[1][1]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[0][2]);
+        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[1][2]);
     }
     @Test
     public void WinLongTwoSet(){
         addWinningGameForBPlayer(4);
         addWinningGameForBPlayer(1);
-        addAnEqualGame(7);
+        addEqualGames(7);
         addWinningGameForBPlayer(1);
         Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[1][0]);
         Assert.assertEquals(9, tennisGame.getNumberOfWonGameInSets()[1][1]);
         Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[0][0]);
         Assert.assertEquals(7, tennisGame.getNumberOfWonGameInSets()[0][1]);
-        AssertOnePlayerScore(2, 0, tennisGame.getCurrentScore().playerBScore);
-        AssertOnePlayerScore(0, 0, tennisGame.getCurrentScore().playerAScore);
-
     }
 
     @Test
@@ -117,17 +133,13 @@ public class TennisGameTest {
     @Test
     public void GetWinnerName(){
         addWinningGameForAPlayer(4);
-        tennisGame.getCurrentScore();
         addWinningGameForAPlayer(4);
-        tennisGame.getCurrentScore();
         Assert.assertEquals("A", tennisGame.GetWinner());
     }
     @Test
     public void GetBWinnerName(){
         addWinningGameForBPlayer(4);
-        tennisGame.getCurrentScore();
         addWinningGameForBPlayer(4);
-        tennisGame.getCurrentScore();
         Assert.assertEquals("B", tennisGame.GetWinner());
     }
     @Test(expected = NoWinnerYet.class)
@@ -135,31 +147,7 @@ public class TennisGameTest {
         tennisGame.GetWinner();
     }
 
-
-    @Test
-    public void afterInitNoWonGame(){
-        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[0][0]);
-        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[1][0]);
-    }
-    @Test
-    public void afterOneWinThereIsOneWon(){
-        addWinningGameForAPlayer(1);
-        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[0][0]);
-        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[1][0]);
-        addWinningGameForBPlayer(1);
-        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[0][0]);
-        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[1][0]);
-        addWinningGameForAPlayer(3);
-        Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[0][0]);
-        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[1][0]);
-        addWinningGameForAPlayer(1);
-        Assert.assertEquals(4, tennisGame.getNumberOfWonGameInSets()[0][0]);
-        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[0][1]);
-        Assert.assertEquals(1, tennisGame.getNumberOfWonGameInSets()[1][0]);
-        Assert.assertEquals(0, tennisGame.getNumberOfWonGameInSets()[1][1]);
-    }
-
-    private void addAnEqualGame(int numberOfEqualGame) {
+    private void addEqualGames(int numberOfEqualGame) {
         for (int i=0; i<numberOfEqualGame; i++){
             addAnEqualGame();
         }
@@ -167,11 +155,6 @@ public class TennisGameTest {
     private void addAnEqualGame() {
         addWinningGameForAPlayer(1);
         addWinningGameForBPlayer(1);
-    }
-
-    private void AssertOnePlayerScore(int set, int game, TennisScore ts) {
-        Assert.assertEquals(game, ts.game);
-        Assert.assertEquals(set, ts.set);
     }
 
     private void addWinningGameForAPlayer(int numberOfWonGame) {

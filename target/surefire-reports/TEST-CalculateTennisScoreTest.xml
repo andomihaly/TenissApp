@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="TennisGameBestFiveTest" time="0.016" errors="0" skipped="0">
+<testsuite tests="10" failures="0" name="CalculateTennisScoreTest" time="0.008" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="11.0.4+10-b304.69"/>
@@ -63,7 +63,14 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="TennisGameBestFiveTest" name="BestOfFiveGameIsOver" time="0"/>
-  <testcase classname="TennisGameBestFiveTest" name="GetWinnerName" time="0.016"/>
-  <testcase classname="TennisGameBestFiveTest" name="BestOfFiveGameIsNotOver" time="0"/>
+  <testcase classname="CalculateTennisScoreTest" name="MaxGame" time="0.004"/>
+  <testcase classname="CalculateTennisScoreTest" name="WonSetButNewSetNotStarted" time="0"/>
+  <testcase classname="CalculateTennisScoreTest" name="AfterOneGame15point" time="0"/>
+  <testcase classname="CalculateTennisScoreTest" name="EasyWinningSet" time="0"/>
+  <testcase classname="CalculateTennisScoreTest" name="longSetGame" time="0"/>
+  <testcase classname="CalculateTennisScoreTest" name="AfterNewGameScoreZero" time="0"/>
+  <testcase classname="CalculateTennisScoreTest" name="AfterTwoGame30point" time="0"/>
+  <testcase classname="CalculateTennisScoreTest" name="after8GameThereIsNoWinner" time="0.004"/>
+  <testcase classname="CalculateTennisScoreTest" name="WinTwoSet" time="0"/>
+  <testcase classname="CalculateTennisScoreTest" name="AfterThreeGame40point" time="0"/>
 </testsuite>

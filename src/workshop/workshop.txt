@@ -1,7 +1,8 @@
 Low level bugs
+    tennisGameTestRefactoring
 
 Integration bugs
-
+    after long game 4,0,4,0,0 -> 0,4,0,4,4  mi lesz a szamítassal
 High level bugs
 
 Clean Code issues:

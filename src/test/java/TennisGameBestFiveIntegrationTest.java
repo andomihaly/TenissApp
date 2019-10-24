@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TennisGameBestFiveTest {
+public class TennisGameBestFiveIntegrationTest {
 
     private TennisGame tennisGame;
 
@@ -16,30 +16,22 @@ public class TennisGameBestFiveTest {
     @Test
     public void BestOfFiveGameIsNotOver(){
         addWinningSetForAPlayer();
-        tennisGame.getCurrentScore();
         addWinningSetForAPlayer();
-        tennisGame.getCurrentScore();
         Assert.assertFalse(tennisGame.IsMatchOver());
     }
     @Test
     public void BestOfFiveGameIsOver(){
         addWinningSetForAPlayer();
-        tennisGame.getCurrentScore();
         addWinningSetForAPlayer();
-        tennisGame.getCurrentScore();
         addWinningSetForAPlayer();
-        tennisGame.getCurrentScore();
         Assert.assertTrue(tennisGame.IsMatchOver());
     }
 
     @Test
     public void GetWinnerName(){
         addWinningSetForAPlayer();
-        tennisGame.getCurrentScore();
         addWinningSetForAPlayer();
-        tennisGame.getCurrentScore();
         addWinningSetForAPlayer();
-        tennisGame.getCurrentScore();
         Assert.assertEquals("A", tennisGame.GetWinner());
     }
 
