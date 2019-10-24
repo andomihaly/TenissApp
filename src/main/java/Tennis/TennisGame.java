@@ -2,7 +2,7 @@ package Tennis;
 
 public class TennisGame {
 
-    public PairTennisGameScore ptgs;
+
     private TypeOfTennisMatch tennisMatchType;
     private int [] [] numberOfWonGamesInSets = new int[2][5];
     private int [] numberOfWonSets = new int[2];
@@ -13,9 +13,7 @@ public class TennisGame {
     private static final int MINIMUM_NUMBER_OF_GAME_TO_WIN_SET = 3;
 
     public TennisGame(TypeOfTennisMatch totm){
-        ptgs = new PairTennisGameScore();
-        ptgs.playerAScore = new TennisScore();
-        ptgs.playerBScore = new TennisScore();
+
         tennisMatchType = totm;
         currentSetIndex = 0;
         for (int i=0; i<5; i++)
@@ -31,29 +29,8 @@ public class TennisGame {
     }
 
     public PairTennisGameScore getCurrentScore() {
-        ptgs.playerAScore = calculateGameScore(PLAYER_A_INDEX);
-        ptgs.playerBScore = calculateGameScore(PLAYER_B_INDEX);
-        for (int i=0; i<currentSetIndex; i++) {
-            if (numberOfWonGamesInSets[PLAYER_A_INDEX][i]>numberOfWonGamesInSets[PLAYER_B_INDEX][i])
-                ptgs.playerAScore.set++;
-            else
-                ptgs.playerBScore.set++;
-        }
-        return ptgs;
-    }
-
-    private TennisScore calculateGameScore(int player) {
-        TennisScore tennisScore = new TennisScore();
-        if (numberOfWonGamesInSets[player][currentSetIndex] >=3){
-            tennisScore.game = 40;
-        }
-        else if (numberOfWonGamesInSets[player][currentSetIndex] == 2){
-            tennisScore.game = 30;
-        }
-        else if (numberOfWonGamesInSets[player][currentSetIndex] ==1){
-            tennisScore.game = 15;
-        }
-        return tennisScore;
+        CalculateTennisScore cts = new CalculateTennisScore();
+        return  cts.getCurrentScore(numberOfWonGamesInSets, currentSetIndex);
     }
 
     public void addGame(String player) {
