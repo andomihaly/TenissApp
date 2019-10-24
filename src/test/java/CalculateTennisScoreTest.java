@@ -16,7 +16,6 @@ public class CalculateTennisScoreTest {
     public void AfterNewGameScoreZero(){
         int [][] wonGame = {{0},{0}};
         AssertOnePlayerScore(0, 0, calculateTennisScore.getCurrentScore(wonGame,0).playerAScore);
-
     }
     @Test
     public void AfterOneGame15point(){

@@ -1,19 +1,45 @@
 package Tennis;
 
 public class CalculateTennisScore {
-    public PairTennisGameScore ptgs;
+    private PairTennisGameScore ptgs;
+    private int [][] wonSetsGames;
+    private int actualSetIndex;
 
     public PairTennisGameScore getCurrentScore(int [] [] wonGames, int actualSetIndex) {
         ptgs = new PairTennisGameScore();
-        ptgs.playerAScore = calculateGameScore(0, wonGames[0][actualSetIndex]);
-        ptgs.playerBScore = calculateGameScore(1, wonGames[1][actualSetIndex]);
-        setPlayersWonSets(wonGames, actualSetIndex);
+        wonSetsGames = wonGames;
+        this.actualSetIndex = actualSetIndex;
+
+        calculateSetAndGameScores();
+
         return ptgs;
     }
 
-    private void setPlayersWonSets(int[][] wonGames, int actualSetIndex) {
+    private void calculateSetAndGameScores() {
+        if (isMatchOver())
+            SetGameScoreAfterMatchIsEnd();
+        else
+            calculatePlayersActualSetScores();
+        setPlayersWonSets();
+    }
+
+    private boolean isMatchOver() {
+        return actualSetIndex==wonSetsGames[0].length;
+    }
+
+    private void calculatePlayersActualSetScores() {
+        ptgs.playerAScore = calculateGameScore(0, wonSetsGames[0][actualSetIndex]);
+        ptgs.playerBScore = calculateGameScore(1, wonSetsGames[1][actualSetIndex]);
+    }
+
+    private void SetGameScoreAfterMatchIsEnd() {
+        ptgs.playerAScore = new TennisScore();
+        ptgs.playerBScore = new TennisScore();
+    }
+
+    private void setPlayersWonSets() {
         for (int i = 0; i < actualSetIndex; i++) {
-            if (wonGames[0][i] > wonGames[1][i])
+            if (wonSetsGames[0][i] > wonSetsGames[1][i])
                 ptgs.playerAScore.set++;
             else
                 ptgs.playerBScore.set++;

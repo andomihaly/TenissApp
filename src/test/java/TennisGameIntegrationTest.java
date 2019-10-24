@@ -52,6 +52,17 @@ public class TennisGameIntegrationTest {
         AssertOnePlayerScore(2, 0, tennisGame.getCurrentScore().playerBScore);
         AssertOnePlayerScore(0, 0, tennisGame.getCurrentScore().playerAScore);
     }
+    @Test
+    public void BestOfFiveGameLong(){
+        addWinningGameForBPlayer(4);
+        addWinningGameForAPlayer(4);
+        addWinningGameForBPlayer(4);
+        PairTennisGameScore ptgs = tennisGame.getCurrentScore();
+        Assert.assertEquals(0, ptgs.playerAScore.game);
+        Assert.assertEquals(1, ptgs.playerAScore.set);
+        Assert.assertEquals(0, ptgs.playerBScore.game);
+        Assert.assertEquals(2, ptgs.playerBScore.set);
+    }
 
 
 

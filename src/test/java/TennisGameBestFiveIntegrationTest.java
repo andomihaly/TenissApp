@@ -1,3 +1,4 @@
+import Tennis.PairTennisGameScore;
 import Tennis.TennisGame;
 import Tennis.TypeOfTennisMatch;
 import org.junit.Assert;
@@ -34,15 +35,31 @@ public class TennisGameBestFiveIntegrationTest {
         addWinningSetForAPlayer();
         Assert.assertEquals("A", tennisGame.GetWinner());
     }
+    @Test
+    public void BestOfFiveGameLong(){
+        addWinningSetForAPlayer();
+        addWinningSetForBPlayer();
+        addWinningSetForAPlayer();
+        addWinningSetForBPlayer();
+        addWinningSetForAPlayer();
+        PairTennisGameScore ptgs = tennisGame.getCurrentScore();
+        Assert.assertEquals(0, ptgs.playerAScore.game);
+        Assert.assertEquals(3, ptgs.playerAScore.set);
+        Assert.assertEquals(0, ptgs.playerBScore.game);
+        Assert.assertEquals(2, ptgs.playerBScore.set);
+    }
 
     private void addWinningSetForAPlayer() {
-        addWinningGame();
+        addWinningGame("A");
     }
-    
 
-    private void addWinningGame() {
+    private void addWinningSetForBPlayer() {
+        addWinningGame("B");
+    }
+
+    private void addWinningGame(String player) {
         for (int i = 0; i< 4; i++) {
-            tennisGame.addGame("A");
+            tennisGame.addGame(player);
         }
     }
 }
