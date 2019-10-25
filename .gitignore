@@ -1,5 +1,3 @@
 target/
-target/surefire-reports/
 .idea/
 /target/
-/target/surefire-reports/
