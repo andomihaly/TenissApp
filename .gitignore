@@ -3,3 +3,7 @@ target/surefire-reports/
 .idea/
 
 
+/target/surefire-reports/CalculateTennisScoreTest.txt
+/target/surefire-reports/TennisMatchIntegrationTest.txt
+/target/surefire-reports/TennisMatchTest.txt
+/target/surefire-reports/TEST-CalculateTennisScoreTest.xml
