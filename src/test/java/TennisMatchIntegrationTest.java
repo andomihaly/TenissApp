@@ -82,14 +82,14 @@ public class TennisMatchIntegrationTest {
     }
 
     private void addWinningGameForAPlayer(int numberOfWonGame) {
-        addWinningGame(numberOfWonGame, "A");
+        addWinningGame(numberOfWonGame, TennisPlayer.PlayerA);
     }
 
     private void addWinningGameForBPlayer(int numberOfWonGame) {
-        addWinningGame(numberOfWonGame, "B");
+        addWinningGame(numberOfWonGame, TennisPlayer.PlayerB);
     }
 
-    private void addWinningGame(int numberOfWonGame, String player) {
+    private void addWinningGame(int numberOfWonGame, TennisPlayer player) {
         for (int i=0; i<numberOfWonGame; i++) {
             tennisMatch.addGame(player);
         }

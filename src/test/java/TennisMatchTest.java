@@ -84,10 +84,6 @@ public class TennisMatchTest {
         Assert.assertEquals(0, tennisMatch.getNumberOfWonGameInSets()[0][1]);
         Assert.assertEquals(0, tennisMatch.getNumberOfWonGameInSets()[1][1]);
     }
-    @Test(expected = InvalidTennisPlayer.class)
-    public void invalidPlayerGetGame(){
-        tennisMatch.addGame("X");
-    }
 
     @Test
     public void WinTwoSet(){
@@ -134,13 +130,13 @@ public class TennisMatchTest {
     public void GetWinnerName(){
         addWinningGameForAPlayer(4);
         addWinningGameForAPlayer(4);
-        Assert.assertEquals("A", tennisMatch.GetWinner());
+        Assert.assertEquals(TennisPlayer.PlayerA, tennisMatch.GetWinner());
     }
     @Test
     public void GetBWinnerName(){
         addWinningGameForBPlayer(4);
         addWinningGameForBPlayer(4);
-        Assert.assertEquals("B", tennisMatch.GetWinner());
+        Assert.assertEquals(TennisPlayer.PlayerB, tennisMatch.GetWinner());
     }
     @Test(expected = NoWinnerYet.class)
     public void noWinnerYet(){
@@ -158,14 +154,14 @@ public class TennisMatchTest {
     }
 
     private void addWinningGameForAPlayer(int numberOfWonGame) {
-        addWinningGame(numberOfWonGame, "A");
+        addWinningGame(numberOfWonGame, TennisPlayer.PlayerA);
     }
 
     private void addWinningGameForBPlayer(int numberOfWonGame) {
-        addWinningGame(numberOfWonGame, "B");
+        addWinningGame(numberOfWonGame, TennisPlayer.PlayerB);
     }
 
-    private void addWinningGame(int numberOfWonGame, String player) {
+    private void addWinningGame(int numberOfWonGame, TennisPlayer player) {
         for (int i=0; i<numberOfWonGame; i++) {
             tennisMatch.addGame(player);
         }

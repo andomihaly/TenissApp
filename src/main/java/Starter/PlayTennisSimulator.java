@@ -1,13 +1,14 @@
 package Starter;
 
 import Tennis.PlayTennis;
+import Tennis.TennisPlayer;
 
 class PlayTennisSimulator implements PlayTennis {
     @Override
-    public String GetWhoWonTheGame() {
+    public TennisPlayer GetWhoWonTheGame() {
         if (Math.random()>0.5)
-            return "A";
+            return TennisPlayer.PlayerA;
         else
-            return "B";
+            return TennisPlayer.PlayerB;
     }
 }

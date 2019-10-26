@@ -1,6 +1,7 @@
 
 import Tennis.TennisMatch;
 import Tennis.PlayTennisGame;
+import Tennis.TennisPlayer;
 import Tennis.TypeOfTennisMatch;
 import org.junit.*;
 
@@ -14,6 +15,6 @@ public class TennisMatchSimulatorTest {
             tennisMatch.addGame(tennisGame.getGame());
             tennisMatch.getCurrentScore();
         }
-        Assert.assertEquals("A", tennisMatch.GetWinner());
+        Assert.assertEquals(TennisPlayer.PlayerA, tennisMatch.GetWinner());
     }
 }

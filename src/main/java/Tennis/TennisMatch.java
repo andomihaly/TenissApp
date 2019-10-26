@@ -14,6 +14,11 @@ public class TennisMatch {
 
     public TennisMatch(TypeOfTennisMatch totm){
         tennisMatchType = totm;
+
+        initNewTennisMatch();
+    }
+
+    private void initNewTennisMatch() {
         currentSetIndex = 0;
         for (int i=0; i<5; i++)
         {
@@ -23,6 +28,7 @@ public class TennisMatch {
         numberOfWonSets[PLAYER_A_INDEX]=0;
         numberOfWonSets[PLAYER_B_INDEX]=0;
     }
+
     public int[][] getNumberOfWonGameInSets(){
         return numberOfWonGamesInSets;
     }
@@ -32,11 +38,11 @@ public class TennisMatch {
         return  cts.getCurrentScore(numberOfWonGamesInSets, currentSetIndex);
     }
 
-    public void addGame(String player) {
-        if (player.equals("A")) {
+    public void addGame(TennisPlayer player) {
+        if (player.equals(TennisPlayer.PlayerA)) {
             numberOfWonGamesInSets[PLAYER_A_INDEX][currentSetIndex]++;
         }
-        else if (player.equals("B")) {
+        else if (player.equals(TennisPlayer.PlayerB)) {
             numberOfWonGamesInSets[PLAYER_B_INDEX][currentSetIndex]++;
         }
         else
@@ -72,11 +78,11 @@ public class TennisMatch {
 
 
 
-    public String GetWinner() {
+    public TennisPlayer GetWinner() {
         if (numberOfWonSets[PLAYER_A_INDEX] >= numberOfWonSetsToWinMatch())
-            return "A";
+            return TennisPlayer.PlayerA;
         else if (numberOfWonSets[PLAYER_B_INDEX] >= numberOfWonSetsToWinMatch())
-            return "B";
+            return TennisPlayer.PlayerB;
         else
             throw new NoWinnerYet();
     }

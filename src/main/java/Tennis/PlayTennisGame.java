@@ -6,7 +6,7 @@ public class PlayTennisGame {
     public PlayTennisGame(PlayTennis realGame){
         actualGame = realGame;
     }
-    public String getGame() {
+    public TennisPlayer getGame() {
         return actualGame.GetWhoWonTheGame();
     }
 

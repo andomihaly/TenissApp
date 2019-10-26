@@ -1,7 +1,8 @@
 import Tennis.PlayTennis;
+import Tennis.TennisPlayer;
 
 class FakePlayTennis implements PlayTennis {
-    public String GetWhoWonTheGame() {
-        return "A";
+    public TennisPlayer GetWhoWonTheGame() {
+        return TennisPlayer.PlayerA;
     }
 }
