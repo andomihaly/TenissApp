@@ -19,14 +19,14 @@ public class TennisMatchBestFiveIntegrationTest {
     public void BestOfFiveGameIsNotOver(){
         addWinningSetForAPlayer();
         addWinningSetForAPlayer();
-        Assert.assertFalse(tennisMatch.IsMatchOver());
+        Assert.assertFalse(tennisMatch.isMatchOver());
     }
     @Test
     public void BestOfFiveGameIsOver(){
         addWinningSetForAPlayer();
         addWinningSetForAPlayer();
         addWinningSetForAPlayer();
-        Assert.assertTrue(tennisMatch.IsMatchOver());
+        Assert.assertTrue(tennisMatch.isMatchOver());
     }
 
     @Test
@@ -34,7 +34,7 @@ public class TennisMatchBestFiveIntegrationTest {
         addWinningSetForAPlayer();
         addWinningSetForAPlayer();
         addWinningSetForAPlayer();
-        Assert.assertEquals(TennisPlayer.PlayerA, tennisMatch.GetWinner());
+        Assert.assertEquals(TennisPlayer.PlayerA, tennisMatch.getWinner());
     }
     @Test
     public void BestOfFiveGameLong(){

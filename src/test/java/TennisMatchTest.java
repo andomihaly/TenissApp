@@ -111,9 +111,9 @@ public class TennisMatchTest {
 
     @Test
     public void GameIsNotOverYet(){
-        Assert.assertFalse(tennisMatch.IsMatchOver());
+        Assert.assertFalse(tennisMatch.isMatchOver());
         addWinningGameForBPlayer(4);
-        Assert.assertFalse(tennisMatch.IsMatchOver());
+        Assert.assertFalse(tennisMatch.isMatchOver());
     }
 
     @Test
@@ -122,7 +122,7 @@ public class TennisMatchTest {
         tennisMatch.getCurrentScore();
         addWinningGameForAPlayer(4);
         tennisMatch.getCurrentScore();
-        Assert.assertTrue(tennisMatch.IsMatchOver());
+        Assert.assertTrue(tennisMatch.isMatchOver());
     }
 
 
@@ -130,17 +130,17 @@ public class TennisMatchTest {
     public void GetWinnerName(){
         addWinningGameForAPlayer(4);
         addWinningGameForAPlayer(4);
-        Assert.assertEquals(TennisPlayer.PlayerA, tennisMatch.GetWinner());
+        Assert.assertEquals(TennisPlayer.PlayerA, tennisMatch.getWinner());
     }
     @Test
     public void GetBWinnerName(){
         addWinningGameForBPlayer(4);
         addWinningGameForBPlayer(4);
-        Assert.assertEquals(TennisPlayer.PlayerB, tennisMatch.GetWinner());
+        Assert.assertEquals(TennisPlayer.PlayerB, tennisMatch.getWinner());
     }
     @Test(expected = NoWinnerYet.class)
     public void noWinnerYet(){
-        tennisMatch.GetWinner();
+        tennisMatch.getWinner();
     }
 
     private void addEqualGames(int numberOfEqualGame) {

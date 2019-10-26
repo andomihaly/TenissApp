@@ -2,7 +2,6 @@ package Tennis;
 
 public class TennisMatch {
 
-
     private TypeOfTennisMatch tennisMatchType;
     private int [] [] numberOfWonGamesInSets = new int[2][5];
     private int [] numberOfWonSets = new int[2];
@@ -69,7 +68,7 @@ public class TennisMatch {
     }
 
 
-    public boolean IsMatchOver() {
+    public boolean isMatchOver() {
         if (numberOfWonSets[PLAYER_A_INDEX] > numberOfWonSetsToWinMatch() ||
                 numberOfWonSets[PLAYER_B_INDEX] > numberOfWonSetsToWinMatch())
             return true;
@@ -78,7 +77,7 @@ public class TennisMatch {
 
 
 
-    public TennisPlayer GetWinner() {
+    public TennisPlayer getWinner() {
         if (numberOfWonSets[PLAYER_A_INDEX] >= numberOfWonSetsToWinMatch())
             return TennisPlayer.PlayerA;
         else if (numberOfWonSets[PLAYER_B_INDEX] >= numberOfWonSetsToWinMatch())

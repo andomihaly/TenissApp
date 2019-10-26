@@ -11,10 +11,10 @@ public class TennisMatchSimulatorTest {
     public void AfterNewGameScoreZero(){
         TennisMatch tennisMatch = new TennisMatch(TypeOfTennisMatch.BestOfThree);
         PlayTennisGame tennisGame = new PlayTennisGame(new FakePlayTennis());
-        while (!tennisMatch.IsMatchOver()) {
+        while (!tennisMatch.isMatchOver()) {
             tennisMatch.addGame(tennisGame.getGame());
             tennisMatch.getCurrentScore();
         }
-        Assert.assertEquals(TennisPlayer.PlayerA, tennisMatch.GetWinner());
+        Assert.assertEquals(TennisPlayer.PlayerA, tennisMatch.getWinner());
     }
 }
