@@ -5,36 +5,33 @@ public class CalculateTennisScore {
     private int [][] wonSetsGames;
     private int actualSetIndex;
 
-    public PairTennisMatchScore getCurrentScore(int [] [] wonGames, int actualSetIndex) {
+    public PairTennisMatchScore getCurrentScore(int [] [] wonGames) {
         ptgs = new PairTennisMatchScore();
         wonSetsGames = wonGames;
-        this.actualSetIndex = actualSetIndex;
+        calculateActualSetIndex();
 
         calculateSetAndGameScores();
 
         return ptgs;
     }
 
+    private void calculateActualSetIndex() {
+        for (int i = 0; i < wonSetsGames[0].length; i++) {
+            if (wonSetsGames[0][i] != -1)
+                actualSetIndex=i;
+            else
+                break;
+        }
+    }
+
     private void calculateSetAndGameScores() {
-        if (isMatchOver())
-            SetGameScoreAfterMatchIsEnd();
-        else
-            calculatePlayersActualSetScores();
+        calculatePlayersActualGameScores();
         setPlayersWonSets();
     }
 
-    private boolean isMatchOver() {
-        return actualSetIndex==wonSetsGames[0].length;
-    }
-
-    private void calculatePlayersActualSetScores() {
+    private void calculatePlayersActualGameScores() {
         ptgs.playerAScore = calculateGameScore(0, wonSetsGames[0][actualSetIndex]);
         ptgs.playerBScore = calculateGameScore(1, wonSetsGames[1][actualSetIndex]);
-    }
-
-    private void SetGameScoreAfterMatchIsEnd() {
-        ptgs.playerAScore = new PlayerActualScore();
-        ptgs.playerBScore = new PlayerActualScore();
     }
 
     private void setPlayersWonSets() {

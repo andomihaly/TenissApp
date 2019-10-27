@@ -3,42 +3,31 @@ package Tennis;
 public class TennisMatch {
 
     private TypeOfTennisMatch tennisMatchType;
-    protected int [] [] numberOfWonGamesInSets = new int[2][5];
+    protected int [] [] numberOfWonGamesInSets = new int[2][6];
     private int [] numberOfWonSets = new int[2];
-    private int currentSetIndex;
-    private final static int PLAYER_A_INDEX = 0;
-    private final static int PLAYER_B_INDEX = 1;
+    private int actualSetIndex;
 
+    private static final int PLAYER_A_INDEX = 0;
+    private static final int PLAYER_B_INDEX = 1;
     private static final int MINIMUM_NUMBER_OF_GAME_TO_WIN_SET = 3;
+    private static final int WON_GAMES_IN_SET_STRUCTURE_INIT_VALUE = -1;
 
     public TennisMatch(TypeOfTennisMatch totm){
         tennisMatchType = totm;
-
         initNewTennisMatch();
-    }
-
-    private void initNewTennisMatch() {
-        currentSetIndex = 0;
-        for (int i=0; i<5; i++)
-        {
-            numberOfWonGamesInSets[PLAYER_A_INDEX][i]=0;
-            numberOfWonGamesInSets[PLAYER_B_INDEX][i]=0;
-        }
-        numberOfWonSets[PLAYER_A_INDEX]=0;
-        numberOfWonSets[PLAYER_B_INDEX]=0;
     }
 
     public PairTennisMatchScore getCurrentScore() {
         CalculateTennisScore cts = new CalculateTennisScore();
-        return  cts.getCurrentScore(numberOfWonGamesInSets, currentSetIndex);
+        return  cts.getCurrentScore(numberOfWonGamesInSets);
     }
 
     public void addGame(TennisPlayer player) {
         if (player.equals(TennisPlayer.PlayerA)) {
-            numberOfWonGamesInSets[PLAYER_A_INDEX][currentSetIndex]++;
+            numberOfWonGamesInSets[PLAYER_A_INDEX][actualSetIndex]++;
         }
         else if (player.equals(TennisPlayer.PlayerB)) {
-            numberOfWonGamesInSets[PLAYER_B_INDEX][currentSetIndex]++;
+            numberOfWonGamesInSets[PLAYER_B_INDEX][actualSetIndex]++;
         }
         else
             throw new InvalidTennisPlayer();
@@ -48,21 +37,39 @@ public class TennisMatch {
         }
     }
 
+    private void initNewTennisMatch() {
+        initNumberOfWonGamesInSetStructure();
+        numberOfWonSets[PLAYER_A_INDEX]=0;
+        numberOfWonSets[PLAYER_B_INDEX]=0;
+    }
+
+    private void initNumberOfWonGamesInSetStructure() {
+        for (int i=0; i<numberOfWonGamesInSets[PLAYER_A_INDEX].length; i++)
+        {
+            numberOfWonGamesInSets[PLAYER_A_INDEX][i]= WON_GAMES_IN_SET_STRUCTURE_INIT_VALUE;
+            numberOfWonGamesInSets[PLAYER_B_INDEX][i]= WON_GAMES_IN_SET_STRUCTURE_INIT_VALUE;
+        }
+        actualSetIndex = -1;
+        initNextSet();
+    }
+
+    private void initNextSet() {
+        actualSetIndex++;
+        numberOfWonGamesInSets[PLAYER_A_INDEX][actualSetIndex]=0;
+        numberOfWonGamesInSets[PLAYER_B_INDEX][actualSetIndex]=0;
+    }
+
     private boolean isSomebodyWinTheCurrentSet() {
-        return (numberOfWonGamesInSets[PLAYER_A_INDEX][currentSetIndex] > MINIMUM_NUMBER_OF_GAME_TO_WIN_SET ||
-                numberOfWonGamesInSets[PLAYER_B_INDEX][currentSetIndex] > MINIMUM_NUMBER_OF_GAME_TO_WIN_SET ) &&
-                Math.abs(numberOfWonGamesInSets[PLAYER_A_INDEX][currentSetIndex] - numberOfWonGamesInSets[PLAYER_B_INDEX][currentSetIndex])>1;
+        return (numberOfWonGamesInSets[PLAYER_A_INDEX][actualSetIndex] > MINIMUM_NUMBER_OF_GAME_TO_WIN_SET ||
+                numberOfWonGamesInSets[PLAYER_B_INDEX][actualSetIndex] > MINIMUM_NUMBER_OF_GAME_TO_WIN_SET ) &&
+                Math.abs(numberOfWonGamesInSets[PLAYER_A_INDEX][actualSetIndex] - numberOfWonGamesInSets[PLAYER_B_INDEX][actualSetIndex])>1;
     }
     private void addWonSetToPlayer(){
-        if (numberOfWonGamesInSets[PLAYER_A_INDEX][currentSetIndex]> numberOfWonGamesInSets[PLAYER_B_INDEX][currentSetIndex])
+        if (numberOfWonGamesInSets[PLAYER_A_INDEX][actualSetIndex]> numberOfWonGamesInSets[PLAYER_B_INDEX][actualSetIndex])
             numberOfWonSets[PLAYER_A_INDEX]++;
         else
             numberOfWonSets[PLAYER_B_INDEX]++;
     }
-    private void initNextSet() {
-        currentSetIndex++;
-    }
-
 
     public boolean isMatchOver() {
         if (numberOfWonSets[PLAYER_A_INDEX] > numberOfWonSetsToWinMatch() ||

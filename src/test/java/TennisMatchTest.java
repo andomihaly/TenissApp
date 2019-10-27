@@ -15,6 +15,8 @@ public class TennisMatchTest {
     public void afterInitNoWonGame(){
         Assert.assertEquals(0, tennisMatch.getNumberOfWonGameInSets()[0][0]);
         Assert.assertEquals(0, tennisMatch.getNumberOfWonGameInSets()[1][0]);
+        Assert.assertEquals(-1, tennisMatch.getNumberOfWonGameInSets()[0][1]);
+        Assert.assertEquals(-1, tennisMatch.getNumberOfWonGameInSets()[1][1]);
     }
     @Test
     public void storeGameWinsAfterSeveralGame(){
@@ -45,6 +47,7 @@ public class TennisMatchTest {
     }
     @Test
     public void BestFiveGame(){
+        tennisMatch = new TennisMatchForTest(TypeOfTennisMatch.BestOfFive);
         addWinningGameForBPlayer(4);
         addWinningGameForAPlayer(4);
         addWinningGameForBPlayer(4);
@@ -70,8 +73,8 @@ public class TennisMatchTest {
         addWinningGameForAPlayer(1);
         Assert.assertEquals(4, tennisMatch.getNumberOfWonGameInSets()[0][0]);
         Assert.assertEquals(4, tennisMatch.getNumberOfWonGameInSets()[1][0]);
-        Assert.assertEquals(0, tennisMatch.getNumberOfWonGameInSets()[0][1]);
-        Assert.assertEquals(0, tennisMatch.getNumberOfWonGameInSets()[1][1]);
+        Assert.assertEquals(-1, tennisMatch.getNumberOfWonGameInSets()[0][1]);
+        Assert.assertEquals(-1, tennisMatch.getNumberOfWonGameInSets()[1][1]);
     }
     @Test
     public void longSetGame(){
