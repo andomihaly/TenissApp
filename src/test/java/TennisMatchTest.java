@@ -4,11 +4,11 @@ import org.junit.*;
 
 public class TennisMatchTest {
 
-    private TennisMatch tennisMatch;
+    private TennisMatchForTest tennisMatch;
 
     @org.junit.Before
     public void setUp() {
-        tennisMatch = new TennisMatch(TypeOfTennisMatch.BestOfThree);
+        tennisMatch = new TennisMatchForTest(TypeOfTennisMatch.BestOfThree);
     }
 
     @Test

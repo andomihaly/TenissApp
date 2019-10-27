@@ -3,7 +3,7 @@ package Tennis;
 public class TennisMatch {
 
     private TypeOfTennisMatch tennisMatchType;
-    private int [] [] numberOfWonGamesInSets = new int[2][5];
+    protected int [] [] numberOfWonGamesInSets = new int[2][5];
     private int [] numberOfWonSets = new int[2];
     private int currentSetIndex;
     private final static int PLAYER_A_INDEX = 0;
@@ -26,10 +26,6 @@ public class TennisMatch {
         }
         numberOfWonSets[PLAYER_A_INDEX]=0;
         numberOfWonSets[PLAYER_B_INDEX]=0;
-    }
-
-    public int[][] getNumberOfWonGameInSets(){
-        return numberOfWonGamesInSets;
     }
 
     public PairTennisMatchScore getCurrentScore() {
@@ -74,8 +70,6 @@ public class TennisMatch {
             return true;
         return false;
     }
-
-
 
     public TennisPlayer getWinner() {
         if (numberOfWonSets[PLAYER_A_INDEX] >= numberOfWonSetsToWinMatch())
