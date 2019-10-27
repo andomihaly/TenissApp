@@ -55,13 +55,14 @@ class TennisGame {
             setWinnerSetScore(ptgs.playerAScore);
         else
             setWinnerSetScore(ptgs.playerBScore);
+        ptgs.playerAScore.game = 0;
+        ptgs.playerBScore.game = 0;
         ptgs.playerAScore.numberOfWonGame = 0;
         ptgs.playerBScore.numberOfWonGame = 0;
     }
 
     private void setWinnerSetScore(TennisScore player) {
         player.set++;
-        player.game = 0;
     }
 
     public boolean IsMatchOver(int minimumWinningSet) {
