@@ -8,12 +8,11 @@ Clean Code issues:
 - Everything in One Class -> practice "SOLID"
 SOLID design:
 
-Actors:
-- ScoreFollower - UI (see the current status and the score of the tennis match)
-- PlayTennis - (play the game and A or B win the Game)
-- TennisMatch - (organize the tennis match, control the match until end)
-        - (collect and store each game during the tennis match)
-- CalculateTennisScore - (calculate the score from the wins)
+- ScoreFollower - ScorePrinter - UI (see the current status and the score of the tennis match)
+- Player - PlayTennis - (play the game and A or B win the Game)
+- Ruler  - TennisMatch - (organize the tennis match, control the match until end)
+                       - (collect and store each game during the tennis match)
+- Scorer - CalculateTennisScore - (calculate the score from the wins)
 
 
 Next Feature:
