@@ -8,6 +8,7 @@
     <artifactId>andomihaly17</artifactId>
     <version>1.0-SNAPSHOT</version>
     <build>
+
         <plugins>
             <plugin>
                 <groupId>org.pitest</groupId>
@@ -28,7 +29,8 @@
                 <!-- set up the source of the project package and set the unit test package -->
                 <configuration>
                     <targetClasses>
-                        <param>app.*</param>
+                        <param>app.Tennis.*</param>
+                        <param>app.UserInterface.*</param>
                     </targetClasses>
                     <targetTests>
                         <param>appTest.*</param>

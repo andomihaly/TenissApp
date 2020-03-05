@@ -48,7 +48,7 @@ public class CalculateTennisScoreTest {
     }
 
     @Test
-    public void after8GameThereIsNoWinner() {
+    public void After8GameThereIsNoWinner() {
         int[][] wonGame = {{4, -1}, {4, -1}};
         PairTennisMatchScore ptms = calculateTennisScore.getCurrentScore(wonGame);
         AssertOnePlayerScore(0, 40, ptms.playerAScore);
@@ -56,7 +56,7 @@ public class CalculateTennisScoreTest {
     }
 
     @Test
-    public void longSetGame() {
+    public void LongSetGame() {
         int[][] wonGame = {{8, -1}, {7, -1}};
         PairTennisMatchScore ptms = calculateTennisScore.getCurrentScore(wonGame);
         AssertOnePlayerScore(0, 40, ptms.playerAScore);

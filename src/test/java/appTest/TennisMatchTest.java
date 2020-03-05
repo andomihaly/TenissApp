@@ -157,6 +157,17 @@ public class TennisMatchTest {
         tennisMatch.getWinner();
     }
 
+    @Test(expected = NoWinnerYet.class)
+    public void noWinnerYet2() {
+        addWinningGameForAPlayer(4);
+        tennisMatch.getWinner();
+    }
+    @Test(expected = NoWinnerYet.class)
+    public void noWinnerYet3() {
+        addWinningGameForBPlayer(4);
+        tennisMatch.getWinner();
+    }
+
     private void addEqualGames(int numberOfEqualGame) {
         for (int i = 0; i < numberOfEqualGame; i++) {
             addAnEqualGame();

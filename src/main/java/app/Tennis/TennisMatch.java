@@ -77,9 +77,9 @@ public class TennisMatch {
     }
 
     public TennisPlayer getWinner() {
-        if (numberOfWonSets[PLAYER_A_INDEX] >= numberOfWonSetsToWinMatch())
+        if (numberOfWonSets[PLAYER_A_INDEX] > numberOfWonSetsToWinMatch())
             return TennisPlayer.PlayerA;
-        else if (numberOfWonSets[PLAYER_B_INDEX] >= numberOfWonSetsToWinMatch())
+        else if (numberOfWonSets[PLAYER_B_INDEX] > numberOfWonSetsToWinMatch())
             return TennisPlayer.PlayerB;
         else
             throw new NoWinnerYet();
