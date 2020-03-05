@@ -1,7 +1,9 @@
-import Tennis.PairTennisMatchScore;
-import Tennis.TennisMatch;
-import Tennis.TennisPlayer;
-import Tennis.TypeOfTennisMatch;
+package appTest;
+
+import app.Tennis.PairTennisMatchScore;
+import app.Tennis.TennisMatch;
+import app.Tennis.TennisPlayer;
+import app.Tennis.TypeOfTennisMatch;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,14 +17,16 @@ public class TennisMatchBestFiveIntegrationTest {
 
         tennisMatch = new TennisMatch(TypeOfTennisMatch.BestOfFive);
     }
+
     @Test
-    public void BestOfFiveGameIsNotOver(){
+    public void BestOfFiveGameIsNotOver() {
         addWinningSetForAPlayer();
         addWinningSetForAPlayer();
         Assert.assertFalse(tennisMatch.isMatchOver());
     }
+
     @Test
-    public void BestOfFiveGameIsOver(){
+    public void BestOfFiveGameIsOver() {
         addWinningSetForAPlayer();
         addWinningSetForAPlayer();
         addWinningSetForAPlayer();
@@ -30,14 +34,15 @@ public class TennisMatchBestFiveIntegrationTest {
     }
 
     @Test
-    public void GetWinnerName(){
+    public void GetWinnerName() {
         addWinningSetForAPlayer();
         addWinningSetForAPlayer();
         addWinningSetForAPlayer();
         Assert.assertEquals(TennisPlayer.PlayerA, tennisMatch.getWinner());
     }
+
     @Test
-    public void BestOfFiveGameLong(){
+    public void BestOfFiveGameLong() {
         addWinningSetForAPlayer();
         addWinningSetForBPlayer();
         addWinningSetForAPlayer();
@@ -59,7 +64,7 @@ public class TennisMatchBestFiveIntegrationTest {
     }
 
     private void addWinningGame(TennisPlayer player) {
-        for (int i = 0; i< 4; i++) {
+        for (int i = 0; i < 4; i++) {
             tennisMatch.addGame(player);
         }
     }

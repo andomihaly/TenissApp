@@ -1,5 +1,7 @@
-import Tennis.PlayTennis;
-import Tennis.TennisPlayer;
+package appTest;
+
+import app.Tennis.PlayTennis;
+import app.Tennis.TennisPlayer;
 
 class FakePlayTennis implements PlayTennis {
     public TennisPlayer GetWhoWonTheGame() {

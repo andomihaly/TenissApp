@@ -7,6 +7,38 @@
     <groupId>TennisApp</groupId>
     <artifactId>andomihaly17</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.5.0</version>
+
+                <!-- add to the test lifecycle flow -->
+                <executions>
+                    <execution>
+                        <id>pit-report</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>mutationCoverage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+                <!-- set up the source of the project package and set the unit test package -->
+                <configuration>
+                    <targetClasses>
+                        <param>app.*</param>
+                    </targetClasses>
+                    <targetTests>
+                        <param>appTest.*</param>
+                    </targetTests>
+                </configuration>
+
+
+            </plugin>
+        </plugins>
+    </build>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>

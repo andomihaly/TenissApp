@@ -1,8 +1,7 @@
-package Starter;
+package app.Starter;
 
 public class PlayAGame {
-    public static void main(String [] args)
-    {
+    public static void main(String[] args) {
         TennisMatchGUI tmGUI = new TennisMatchGUI();
         tmGUI.playOneMatch();
     }

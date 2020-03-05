@@ -1,8 +1,8 @@
-package Tennis;
+package app.Tennis;
 
 public enum TypeOfTennisMatch {
-    BestOfThree (3),
-    BestOfFive (5);
+    BestOfThree(3),
+    BestOfFive(5);
 
     public final int maximumSetInGame;
 

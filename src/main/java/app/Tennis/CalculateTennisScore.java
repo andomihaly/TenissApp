@@ -1,11 +1,11 @@
-package Tennis;
+package app.Tennis;
 
 public class CalculateTennisScore {
     private PairTennisMatchScore ptgs;
-    private int [][] wonSetsGames;
+    private int[][] wonSetsGames;
     private int actualSetIndex;
 
-    public PairTennisMatchScore getCurrentScore(int [] [] wonGames) {
+    public PairTennisMatchScore getCurrentScore(int[][] wonGames) {
         ptgs = new PairTennisMatchScore();
         wonSetsGames = wonGames;
         calculateActualSetIndex();
@@ -18,7 +18,7 @@ public class CalculateTennisScore {
     private void calculateActualSetIndex() {
         for (int i = 0; i < wonSetsGames[0].length; i++) {
             if (wonSetsGames[0][i] != -1)
-                actualSetIndex=i;
+                actualSetIndex = i;
             else
                 break;
         }
@@ -45,13 +45,11 @@ public class CalculateTennisScore {
 
     private PlayerActualScore calculateGameScore(int player, int wonGameInSet) {
         PlayerActualScore actualGameScore = new PlayerActualScore();
-        if (wonGameInSet >=3){
+        if (wonGameInSet >= 3) {
             actualGameScore.game = 40;
-        }
-        else if (wonGameInSet == 2){
+        } else if (wonGameInSet == 2) {
             actualGameScore.game = 30;
-        }
-        else if (wonGameInSet ==1){
+        } else if (wonGameInSet == 1) {
             actualGameScore.game = 15;
         }
         return actualGameScore;
